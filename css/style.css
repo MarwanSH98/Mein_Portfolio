@@ -87,6 +87,7 @@ body {
   left: 10%;
   filter: blur(60px);
   opacity: 0;
+  float: ;
   animation: fadeIn 1s ease-out forwards 0.5s,
     float 15s ease-in-out infinite alternate;
   z-index: 1;
@@ -315,6 +316,7 @@ body {
 }
 .skills-grid,
 .language-grid {
+  background-image: linear-gradient(to bottom, #fff, #e0e0e0, transparent);
   display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -405,49 +407,6 @@ body {
 
 .sprachen li {
   padding: 0.5rem 0;
-}
-
-/* Kontakt */
-.kontakt {
-  box-shadow: 1px 1px 10px 5px #ff00a194;
-  background-color: #e9ecef;
-  padding: 2rem;
-
-  margin: 70px 0 0 32px;
-  width: 25%;
-  border-radius: 12px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.kontakt:hover {
-  transform: translateY(-5px);
-  box-shadow: 2px 2px 20px 8px #ff00a1cc;
-}
-
-/* Icon */
-.kontakt i {
-  color: #0d6efd;
-  margin-right: 0.5rem;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-/* Link */
-.kontakt a {
-  color: #212529;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-}
-
-/* Hover Effekte für Icon und Link */
-.kontakt a:hover {
-  color: #0d6efd;
-}
-
-.kontakt a:hover i {
-  color: #0d6efd;
-  transform: translateX(4px);
 }
 
 /* Fade-in Animation */
