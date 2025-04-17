@@ -494,6 +494,27 @@ body {
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
 }
+@media (max-width: 768px) {
+  .kontaktformular {
+    padding: 2rem;
+    margin: 2rem 1rem;
+  }
+
+  .kontaktformular input,
+  .kontaktformular textarea {
+    font-size: 1rem;
+    max-width: 90%;
+    margin: 0 auto 1.5rem auto;
+    display: block;
+  }
+
+  .kontaktformular button {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+}
 
 /* ===== FOOTER ===== */
 footer {
