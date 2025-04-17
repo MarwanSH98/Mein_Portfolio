@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div class="header"> 
+    <div class="header">
       <ul>
         <li><a href="#home"> Home </a></li>
         <li><a href="#about">Über mich </a></li>
@@ -40,22 +40,24 @@
     </section>
 
     <section id="hero">
-      <h1 class="überschrift">
-        Hallo, ich bin
-        <span data-text="Marwan Sabah">Marwan Sabah</span> angehender
-        Frontend-Entwickler.
-      </h1>
+      <div class="textbereich">
+        <h1 class="überschrift">
+          Hallo, ich bin <span data-text="Marwan Sabah">Marwan Sabah</span>
+          angehender Frontend-Entwickler.
+        </h1>
+
+        <div class="button">
+          <a href="CV/Bewerbung.pdf" download="Bewerbung.pdf">
+            <button type="button">Mein CV</button>
+          </a>
+          <a href="#mehr">
+            <button type="button">Mehr</button>
+          </a>
+        </div>
+      </div>
+
       <img src="img/marwan.jpeg" alt="Mein Bild" class="profilbild" />
     </section>
-
-    <div class="button">
-      <a href="CV/Bewerbung.pdf" download="Bewerbung.pdf">
-        <button type="button">Mein CV</button>
-      </a>
-      <a href="#mehr">
-        <button type="button">Mehr</button>
-      </a>
-    </div>
 
     <section class="skills-section">
       <h2>Skills</h2>
@@ -132,6 +134,7 @@
           placeholder="Deine E-Mail"
           required
           aria-required="true"
+          aria-invalid="true"
         />
         <textarea
           name="message"

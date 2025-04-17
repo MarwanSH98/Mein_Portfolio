@@ -164,32 +164,139 @@ body {
   }
 }
 
-/* Profilbild */
+/* Hero-Section Layout */
 #hero {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 50px;
-
-  padding: 270px 30px 0px 150px;
+  padding: 100px 50px;
+  gap: 3rem;
+  flex-wrap: wrap;
 }
 
+/* Textbereich links */
+.textbereich {
+  margin: 0 100px;
+ word-wrap: break-word;
+  max-width: 50%;
+}
+
+/* Überschrift */
+.überschrift {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Profilbild rechts */
 .profilbild {
-  width: 500px;
-  height: 500px;
+  width: 350px;
+  height: 350px;
   object-fit: cover;
   border-radius: 50%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  animation: popIn 5s ease;
+  animation: popIn 1s ease;
 }
-@keyframes popIn {
-  0% {
-    transform: scale(0.5);
-    opacity: 0;
+
+/* Buttons */
+.button {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.button button {
+  background: var(--gradient);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(67, 97, 238, 0.2);
+}
+
+.button button:hover {
+  background: var(--primary);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(67, 97, 238, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #hero {
+    flex-direction: column;
+    text-align: center;
   }
-  100% {
-    transform: scale(1);
+
+  .textbereich {
+    max-width: 100%;
+  }
+
+  .überschrift {
+    font-size: 2rem;
+  }
+
+  .button {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .button button {
+    width: 80%;
+    padding: 10px 50px;
+    font-size: 1px;
+  }
+
+  .profilbild {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+
+
+
+@keyframes slideFadeIn {
+  to {
     opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typeWriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blinkCursor {
+  from,
+  to {
+    border-right: 2px solid transparent;
+  }
+  50% {
+    border-right: 2px solid var(--accent);
+  }
+}
+
+@keyframes underlineExpand {
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes textGlow {
+  from {
+    text-shadow: 0 0 5px rgba(67, 238, 158, 0.3);
+  }
+  to {
+    text-shadow: 0 0 15px rgba(121, 238, 67, 0.6);
   }
 }
 
@@ -238,89 +345,7 @@ body {
   background: var(--gradient);
   animation: underlineExpand 1s ease-out forwards 1.8s;
 }
-/* Styling für das Button-Container */
-.button {
-  padding: 100px 0;
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  margin-top: 2rem;
-}
 
-/* Stil für die Buttons */
-.button button {
-  background: var(--gradient);
-  color: white;
-  border: none;
-  padding: 20px 50px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 1s ease;
-  box-shadow: 0 5px 15px rgba(67, 97, 238, 0.2);
-}
-
-/* Hover-Effekt für die Buttons */
-.button button:hover {
-  background: var(--primary);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(67, 97, 238, 0.3);
-}
-
-/* Responsive Design für Buttons */
-@media (max-width: 768px) {
-  .button {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .button button {
-    width: 100%;
-    padding: 1rem;
-  }
-}
-
-@keyframes slideFadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes typeWriter {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes blinkCursor {
-  from,
-  to {
-    border-right: 2px solid transparent;
-  }
-  50% {
-    border-right: 2px solid var(--accent);
-  }
-}
-
-@keyframes underlineExpand {
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes textGlow {
-  from {
-    text-shadow: 0 0 5px rgba(67, 238, 158, 0.3);
-  }
-  to {
-    text-shadow: 0 0 15px rgba(121, 238, 67, 0.6);
-  }
-}
 .skills-grid,
 .language-grid {
   background-image: linear-gradient(to bottom, #fff, #e0e0e0, transparent);
@@ -471,9 +496,6 @@ body {
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
 }
-.ds {
-  text-align: center;
-}
 
 /* ===== FOOTER ===== */
 footer {
@@ -530,5 +552,81 @@ footer a:hover {
   .kontaktformular {
     padding: 2rem;
     margin: 2rem 1rem;
+  }
+}
+/* ===== RESPONSIVE DESIGN (erweiterte Anpassungen) ===== */
+@media (max-width: 992px) {
+  #hero {
+    flex-direction: column;
+    align-items: center;
+    padding: 6rem 2rem;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .überschrift {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .profilbild {
+    width: 250px;
+    height: 250px;
+  }
+
+  .sprachen {
+    width: 80%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 576px) {
+  .header ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .header li a {
+    padding: 0.5rem 1rem;
+  }
+
+  .welcome {
+    font-size: 2rem;
+  }
+
+  .überschrift {
+    font-size: 1.5rem;
+  }
+
+  .button {
+    padding: 2rem 0;
+    gap: 1rem;
+  }
+
+  .skills-grid,
+  .language-grid {
+    grid-template-columns: 1fr;
+    padding: 0.5rem;
+  }
+
+  .kontaktformular {
+    padding: 2rem 1rem;
+    margin: 2rem 1rem;
+  }
+}
+@media (max-width: 992px) {
+  .button {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .button button {
+    width: 80%;
+    max-width: 200px;
+  }
+
+  .profilbild {
+    margin-bottom: 1rem;
   }
 }
