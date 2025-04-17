@@ -87,7 +87,6 @@ body {
   left: 10%;
   filter: blur(60px);
   opacity: 0;
-  float: ;
   animation: fadeIn 1s ease-out forwards 0.5s,
     float 15s ease-in-out infinite alternate;
   z-index: 1;
@@ -177,7 +176,7 @@ body {
 /* Textbereich links */
 .textbereich {
   margin: 0 100px;
- word-wrap: break-word;
+  word-wrap: break-word;
   max-width: 50%;
 }
 
@@ -255,9 +254,6 @@ body {
     height: 250px;
   }
 }
-
-
-
 
 @keyframes slideFadeIn {
   to {
