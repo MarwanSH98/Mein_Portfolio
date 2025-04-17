@@ -192,15 +192,67 @@ body {
   font-weight: 700;
 }
 
-/* Profilbild rechts */
 .profilbild {
   width: 350px;
   height: 350px;
   object-fit: cover;
   border-radius: 50%;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  animation: popIn 1s ease;
+  box-shadow: 
+    0 0 20px rgba(0, 0, 0, 0.2),
+    0 0 40px rgba(67, 97, 238, 0.3); /* Blauer Schein */
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  animation: 
+    float 6s ease-in-out infinite,
+    borderPulse 3s ease-in-out infinite alternate;
+    margin: 0 0 0 00px;
 }
+
+/* Schwebeeffekt */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-15px) rotate(2deg); 
+  }
+}
+
+/* Animierter Rahmen */
+@keyframes borderPulse {
+  0% {
+    box-shadow: 
+      0 0 10px rgba(67, 97, 238, 0.3),
+      0 0 30px rgba(67, 97, 238, 0.2),
+      inset 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: 
+      0 0 20px rgba(67, 97, 238, 0.6),
+      0 0 50px rgba(67, 97, 238, 0.4),
+      inset 0 0 15px rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* Hover-Effekte */
+.profilbild:hover {
+  animation-play-state: paused;
+  transform: scale(1.05) rotate(-2deg);
+  filter: sepia(20%) brightness(110%);
+}
+
+/* Responsive Anpassung */
+@media (max-width: 768px) {
+  .profilbild {
+    width: 250px;
+    height: 250px;
+    animation: 
+      float 4s ease-in-out infinite,
+      borderPulse 3s ease-in-out infinite alternate;
+  }
+}
+
 
 /* Buttons */
 .button {
@@ -551,9 +603,25 @@ footer a:hover {
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
   .header ul {
+    display: flex; 
     flex-direction: column;
+    align-items: center; /* Zentrierung hinzufügen */
     gap: 0.5rem;
     padding: 1rem;
+    margin: 0;
+    background-attachment: none;
+  }
+
+  .header li {
+    width: 50%; /* Volle Breite für bessere Klickflächen */
+    text-align: center;
+  }
+
+  .header li a {
+    display: block; /* Blockelement für bessere Touch-Targets */
+    padding: 0.75rem;
+    margin: 2px 0;
+    background: rgba(255, 255, 255, 0.2); /* Bessere Sichtbarkeit */
   }
 
   #hero {
@@ -588,10 +656,6 @@ footer a:hover {
     text-align: center;
   }
 
-  .profilbild {
-    width: 250px;
-    height: 250px;
-  }
 
   .sprachen {
     width: 80%;
@@ -600,14 +664,6 @@ footer a:hover {
 }
 
 @media (max-width: 576px) {
-  .header ul {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .header li a {
-    padding: 0.5rem 1rem;
-  }
 
   .welcome {
     font-size: 2rem;
@@ -645,7 +701,5 @@ footer a:hover {
     max-width: 200px;
   }
 
-  .profilbild {
-    margin-bottom: 1rem;
-  }
+
 }
