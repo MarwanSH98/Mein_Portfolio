@@ -167,23 +167,29 @@ body {
 #hero {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 100px 50px;
-  gap: 3rem;
+  justify-content: center;
+  padding: 4rem 2rem;
+  gap: 4rem;
   flex-wrap: wrap;
+  min-height: 80vh;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-/* Textbereich links */
+/* Textbereich */
 .textbereich {
-  margin: 0 100px;
-  word-wrap: break-word;
-  max-width: 50%;
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+  padding: 0 1rem;
 }
 
 /* Überschrift */
 .überschrift {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.2;
   margin-bottom: 2rem;
+  font-weight: 700;
 }
 
 /* Profilbild rechts */
@@ -199,59 +205,55 @@ body {
 /* Buttons */
 .button {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
+  margin-top: 2rem;
   flex-wrap: wrap;
-  margin-top: 1rem;
+}
+
+.button a {
+  text-decoration: none;
 }
 
 .button button {
   background: var(--gradient);
   color: white;
   border: none;
-  padding: 15px 40px;
+  padding: 1rem 2.5rem;
   font-size: 1.1rem;
   font-weight: 600;
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(67, 97, 238, 0.2);
+  min-width: 150px;
+  text-align: center;
 }
 
 .button button:hover {
-  background: var(--primary);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(67, 97, 238, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(67, 97, 238, 0.4);
 }
 
-/* Responsive */
+/* Responsive Anpassungen */
 @media (max-width: 768px) {
   #hero {
-    flex-direction: column;
+    flex-direction: column-reverse;
     text-align: center;
+    padding: 2rem 1rem;
+    gap: 2rem;
   }
 
   .textbereich {
     max-width: 100%;
-  }
-
-  .überschrift {
-    font-size: 2rem;
+    padding: 0;
   }
 
   .button {
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
   }
 
   .button button {
-    width: 80%;
-    padding: 10px 50px;
-    font-size: 1px;
-  }
-
-  .profilbild {
-    width: 250px;
-    height: 250px;
+    width: 100%;
+    padding: 1rem;
   }
 }
 
