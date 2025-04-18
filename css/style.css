@@ -28,7 +28,7 @@ body {
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 100;
+  z-index: 1;
   box-shadow: var(--shadow);
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 }
@@ -37,7 +37,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 2rem;
-  padding: 1.5rem;
+  padding: 15px;
   margin: 0;
   list-style: none;
 }
@@ -46,14 +46,15 @@ body {
   color: white;
   text-decoration: none;
   font-weight: 500;
-  padding: 0.75rem 1.5rem;
+  padding: 10px 10px;
   border-radius: 50px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   background: rgba(255, 255, 255, 0.1);
 }
 
 .header li a:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.918);
+  color: #1a1a2e;
   transform: translateY(-3px);
 }
 .header ul li.project {
@@ -182,14 +183,6 @@ body {
   min-width: 300px;
   max-width: 600px;
   padding: 0 1rem;
-}
-
-/* Überschrift */
-.überschrift {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.2;
-  margin-bottom: 2rem;
-  font-weight: 700;
 }
 
 .profilbild {
@@ -593,11 +586,14 @@ footer a:hover {
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 768px) {
+@media (max-width: 100px) {
+  .header {
+    position: static;
+  }
   .header ul {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Zentrierung hinzufügen */
+    align-items: center;
     gap: 0.5rem;
     padding: 1rem;
     margin: 0;
@@ -605,7 +601,7 @@ footer a:hover {
   }
 
   .header li {
-    width: 50%; /* Volle Breite für bessere Klickflächen */
+    width: 50%;
     text-align: center;
   }
 
