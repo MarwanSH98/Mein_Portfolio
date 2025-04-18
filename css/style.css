@@ -197,40 +197,34 @@ body {
   height: 350px;
   object-fit: cover;
   border-radius: 50%;
-  box-shadow: 
-    0 0 20px rgba(0, 0, 0, 0.2),
-    0 0 40px rgba(67, 97, 238, 0.3); /* Blauer Schein */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 0 40px rgba(67, 97, 238, 0.3); /* Blauer Schein */
   transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
-  animation: 
-    float 6s ease-in-out infinite,
+  animation: float 6s ease-in-out infinite,
     borderPulse 3s ease-in-out infinite alternate;
-    margin: 0 0 0 00px;
+  margin: 0 0 0 00px;
 }
 
 /* Schwebeeffekt */
 @keyframes float {
-  0%, 100% { 
-    transform: translateY(0) rotate(0deg); 
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
   }
-  50% { 
-    transform: translateY(-15px) rotate(2deg); 
+  50% {
+    transform: translateY(-15px) rotate(2deg);
   }
 }
 
 /* Animierter Rahmen */
 @keyframes borderPulse {
   0% {
-    box-shadow: 
-      0 0 10px rgba(67, 97, 238, 0.3),
-      0 0 30px rgba(67, 97, 238, 0.2),
+    box-shadow: 0 0 10px rgba(67, 97, 238, 0.3), 0 0 30px rgba(67, 97, 238, 0.2),
       inset 0 0 10px rgba(255, 255, 255, 0.5);
   }
   100% {
-    box-shadow: 
-      0 0 20px rgba(67, 97, 238, 0.6),
-      0 0 50px rgba(67, 97, 238, 0.4),
+    box-shadow: 0 0 20px rgba(67, 97, 238, 0.6), 0 0 50px rgba(67, 97, 238, 0.4),
       inset 0 0 15px rgba(255, 255, 255, 0.8);
   }
 }
@@ -247,12 +241,10 @@ body {
   .profilbild {
     width: 250px;
     height: 250px;
-    animation: 
-      float 4s ease-in-out infinite,
+    animation: float 4s ease-in-out infinite,
       borderPulse 3s ease-in-out infinite alternate;
   }
 }
-
 
 /* Buttons */
 .button {
@@ -603,7 +595,7 @@ footer a:hover {
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
   .header ul {
-    display: flex; 
+    display: flex;
     flex-direction: column;
     align-items: center; /* Zentrierung hinzufügen */
     gap: 0.5rem;
@@ -656,7 +648,6 @@ footer a:hover {
     text-align: center;
   }
 
-
   .sprachen {
     width: 80%;
     max-width: 300px;
@@ -664,7 +655,6 @@ footer a:hover {
 }
 
 @media (max-width: 576px) {
-
   .welcome {
     font-size: 2rem;
   }
@@ -700,6 +690,4 @@ footer a:hover {
     width: 80%;
     max-width: 200px;
   }
-
-
 }
