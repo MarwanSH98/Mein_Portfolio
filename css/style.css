@@ -541,6 +541,29 @@ body {
     font-size: 1rem;
   }
 }
+.scroll-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: #0097fd;
+  color: #fff;
+  border-radius: 25%;
+  text-align: center;
+  line-height: 40px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+
+.scroll-to-top:hover {
+  background-color: #555;
+  cursor: pointer;
+}
+html {
+  scroll-behavior: smooth;
+}
 
 /* ===== FOOTER ===== */
 footer {
