@@ -13,6 +13,9 @@
       name="description"
       content="Mein Portfolio als angehender Frontend-Entwickler. Hier findest du meine Projekte und mehr über mich."
     />
+    <meta name="author" content="Marwan Sabah" />
+    <meta name="robots" content="index, follow" />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -30,21 +33,29 @@
         <li class="project"><a href="#projects">Projekte</a></li>
         <li><a href="#contact">Kontakt </a></li>
       </ul>
+      <button id="darkModeToggle" data-tooltip="Dark Mode umschalten">
+        🌓
+      </button>
     </div>
-
+    <i class="fab fa-html5" data-tooltip="HTML5"></i>
     <section class="home">
       <h1 class="welcome">Willkommen auf meiner Seite</h1>
     </section>
 
     <section id="hero">
-      <div class="textbereich">
+      <div class="textbereich" id="about">
         <h1 class="überschrift">
           Hallo, ich bin <span data-text="Marwan Sabah">Marwan Sabah</span>
-          angehender Frontend-Entwickler.
         </h1>
+        <div class="typing-container">
+          <span class="typing"></span>
+        </div>
 
         <div class="button">
-          <a href="CV/Bewerbung.pdf" download="Bewerbung.pdf">
+          <a
+            href="CV/Marwan_Sabah_Lebenslauf.pdf"
+            download="Marwan_Sabah_Lebenslauf.pdf"
+          >
             <button type="button" class="cv">Mein CV</button>
           </a>
           <a href="#mehr">
@@ -71,28 +82,28 @@
           <i class="fab fa-css3-alt"></i>
           <h3>CSS</h3>
           <div class="progress-bar">
-            <div style="width: 70%; padding: 4px 0">70%</div>
+            <div style="width: 80%; padding: 4px 0">80%</div>
           </div>
         </div>
         <div class="skill-card">
           <i class="fab fa-js"></i>
           <h3>JavaScript</h3>
           <div class="progress-bar">
-            <div style="width: 60%; padding: 4px 0">60%</div>
+            <div style="width: 60%; padding: 4px 0">30%</div>
           </div>
         </div>
         <div class="skill-card">
           <i class="fab fa-wordpress"></i>
           <h3>WordPress</h3>
           <div class="progress-bar">
-            <div style="width: 40%; padding: 4px 0">40%</div>
+            <div style="width: 50%; padding: 4px 0">50%</div>
           </div>
         </div>
         <div class="skill-card">
           <i class="fab fa-java"></i>
           <h3>Java</h3>
           <div class="progress-bar">
-            <div style="width: 70%; padding: 4px 0">70%</div>
+            <div style="width: 80%; padding: 4px 0">80%</div>
           </div>
         </div>
       </div>
@@ -144,7 +155,6 @@
       </form>
     </section>
 
-    <!-- Dein Scroll-To-Top-Button -->
     <a href="#top" class="scroll-to-top"> ↑ </a>
 
     <footer>
@@ -169,13 +179,6 @@
       </section>
     </footer>
   </body>
-  <script>
-    const form = document.querySelector("form");
-
-    form.addEventListener("submit", function () {
-      setTimeout(() => {
-        form.reset();
-      }, 100); // kleine Verzögerung, damit der Submit zuerst im neuen Tab passiert
-    });
-  </script>
+  
+  <script src="js/script.js"></script>
 </html>

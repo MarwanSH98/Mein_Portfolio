@@ -13,6 +13,9 @@
 
 /* === Body Anpassung === */
 body {
+  --dark: #1a1a2e;
+  --light: #f8f9fa;
+
   font-family: "Inter", sans-serif;
   background: var(--dark);
   color: var(--light);
@@ -21,8 +24,19 @@ body {
   margin: 0;
   overflow-x: hidden;
 }
+
+/* === Hellmodus aktiv === */
+body.dark-mode {
+  --dark: #f8f9fa;
+  --light: #1a1a2e;
+}
+
 /* ===== GLASSMORPHISM HEADER ===== */
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0px;
   background: var(--glass);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -38,13 +52,14 @@ body {
   display: flex;
   justify-content: center;
   gap: 2rem;
-  padding: 15px;
   margin: 0;
   list-style: none;
+  padding: 15px;
+  flex: 1;
 }
 
 .header li a {
-  color: white;
+  color: var(--light);
   text-decoration: none;
   font-weight: 500;
   padding: 10px 10px;
@@ -60,6 +75,22 @@ body {
 }
 .header ul li.project {
   display: none;
+}
+#darkModeToggle {
+  margin-right: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid var(--dark);
+  color: var(--dark);
+  font-size: 1.2rem;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#darkModeToggle:hover {
+  background: var(--dark);
+  color: var(--light);
 }
 
 /* ===== HERO SECTION ===== */
@@ -168,10 +199,10 @@ body {
 #hero {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 4rem 2rem;
   gap: 4rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   min-height: 80vh;
   max-width: 1400px;
   margin: 0 auto;
@@ -181,23 +212,28 @@ body {
 .textbereich {
   flex: 1;
   min-width: 300px;
-  max-width: 600px;
+  max-width: 100%;
   padding: 0 1rem;
+  margin: 0 10px;
+  position: relative;
+  z-index: 2; /* Höhere Ebene als das Bild */
 }
 
 .profilbild {
   width: 350px;
   height: 350px;
+  flex-shrink: 0; /* Verhindert das Schrumpfen des Bildes */
   object-fit: cover;
   border-radius: 50%;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 0 40px rgba(67, 97, 238, 0.3); /* Blauer Schein */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 0 40px rgba(67, 97, 238, 0.3);
   transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
   animation: float 6s ease-in-out infinite,
     borderPulse 3s ease-in-out infinite alternate;
-  margin: 0 0 0 0px;
+  margin: 0;
   will-change: transform;
+  z-index: 1; /* Niedrigere Ebene als der Text */
 }
 
 /* Schwebeeffekt */
@@ -229,14 +265,23 @@ body {
   transform: scale(1.05) rotate(-2deg);
   filter: sepia(20%) brightness(110%);
 }
-
-/* Responsive Anpassung */
 @media (max-width: 768px) {
+  #hero {
+    flex-direction: column; /* Stapelung auf kleinen Bildschirmen */
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .textbereich {
+    max-width: 100%; /* Volle Breite auf Mobile */
+    text-align: center;
+    order: 2; /* Text kommt nach dem Bild */
+  }
+
   .profilbild {
     width: 250px;
     height: 250px;
-    animation: float 4s ease-in-out infinite,
-      borderPulse 3s ease-in-out infinite alternate;
+    order: 1; /* Bild kommt vor dem Text */
   }
 }
 
@@ -267,8 +312,8 @@ body {
 }
 
 .button button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(67, 97, 238, 0.4);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 5px 15px var(--accent);
 }
 
 /* Responsive Anpassungen */
@@ -344,6 +389,8 @@ body {
   opacity: 0;
   animation: textGlow 2s ease-in-out infinite alternate,
     slideFadeIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 0.3s;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .überschrift span {
@@ -380,14 +427,8 @@ body {
 
 .skills-grid,
 .language-grid {
-  background: rgba(
-    255,
-    255,
-    255,
-    0.05
-  ); /* leicht transparent für Glass-Effekt */
+  background: rgba(255, 255, 255, 0.05);
   color: #fff;
-
   display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -415,14 +456,23 @@ body {
 
 .skill-card i {
   font-size: 2.5rem;
-  color: white;
+  color: var(--light); /* ← reagiert automatisch auf den Modus */
   margin-bottom: 0.5rem;
+}
+
+.skill-card p,
+.skill-card span,
+.typing,
+h1,
+h2,
+h3 {
+  color: var(--light); /* optional – für Konsistenz */
 }
 
 .skill-card h3 {
   margin: 0.5rem 0;
   font-size: 1.1rem;
-  color: white;
+  color: var(--light);
 }
 
 .progress-bar {
@@ -451,9 +501,16 @@ body {
   color: #0d6efd;
 }
 
+/* Standardfarbe im dunklen Modus */
 .lang-card {
-  font-size: 1rem;
-  color: white;
+  color: white; /* oder was du dort aktuell nutzt */
+}
+
+/* Für den hellen Modus */
+@media (prefers-color-scheme: light) {
+  .lang-card {
+    color: rgb(133, 10, 248);
+  }
 }
 
 /* Fade-in Animation */
@@ -541,6 +598,28 @@ body {
     font-size: 1rem;
   }
 }
+@media (prefers-color-scheme: light) {
+  .kontaktformular {
+    background: #ffffff; /* Weißer Hintergrund */
+  }
+
+  .kontaktformular input,
+  .kontaktformular textarea {
+    background-color: #f5f5f5; /* Hellgrau/Weiß */
+    color: #000; /* Schwarzer Text */
+    border-color: #999; /* Dezentere Umrandung */
+  }
+
+  .kontaktformular input::placeholder,
+  .kontaktformular textarea::placeholder {
+    color: #666; /* Platzhalter ebenfalls dunkel, damit sichtbar */
+  }
+
+  .kontaktformular button {
+    color: #fff; /* Weißer Text auf farbigem Button (z. B. Gradient) */
+  }
+}
+
 .scroll-to-top {
   position: fixed;
   right: 20px;
@@ -565,6 +644,44 @@ html {
   scroll-behavior: smooth;
 }
 
+.typing-container {
+  display: inline;
+  border-right: 2px solid #fff;
+  font-weight: bold;
+  font-size: 30px;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: blink 0.7s infinite;
+}
+
+/* Mobile-Stil */
+@media (max-width: 768px) {
+  .typing-container {
+    display: block;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  .überschrift {
+    display: block;
+    text-align: center;
+  }
+}
+
+@keyframes blink {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #fff;
+  }
+}
+@media (max-width: 768px) {
+  .typing {
+    font-size: 1.2rem; /* Kleinere Schrift */
+  }
+}
 /* ===== FOOTER ===== */
 footer {
   background: var(--dark);
@@ -706,3 +823,26 @@ footer a:hover {
     max-width: 200px;
   }
 }
+/* Dark Mode */
+body[data-theme="dark"] .kontaktformular {
+  background: #2a2a40; /* Hintergrund im Dunkelmodus */
+  color: #fff; /* Textfarbe im Dunkelmodus */
+}
+
+body[data-theme="dark"] .lang-card {
+  background-color: rgba(255, 255, 255, 0.1); /* Leicht durchsichtiger Hintergrund für die Sprachkarten */
+  color: #fff; /* Textfarbe für die Sprachkarten im Dunkelmodus */
+}
+
+/* Light Mode */
+body[data-theme="light"] .kontaktformular {
+  background: #fff; /* Heller Hintergrund im Light Mode */
+  color: #000; /* Dunkle Textfarbe im Light Mode */
+}
+
+body[data-theme="light"] .lang-card {
+  background-color: #f0f0f0; /* Heller Hintergrund für die Sprachkarten */
+  color: #000; /* Dunkle Textfarbe für die Sprachkarten im Light Mode */
+}
+
+
