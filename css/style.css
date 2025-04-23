@@ -216,13 +216,13 @@ body.dark-mode {
   padding: 0 1rem;
   margin: 0 10px;
   position: relative;
-  z-index: 2; /* Höhere Ebene als das Bild */
+  z-index: 2;
 }
 
 .profilbild {
   width: 350px;
   height: 350px;
-  flex-shrink: 0; /* Verhindert das Schrumpfen des Bildes */
+  flex-shrink: 0;
   object-fit: cover;
   border-radius: 50%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 0 40px rgba(67, 97, 238, 0.3);
@@ -233,7 +233,7 @@ body.dark-mode {
     borderPulse 3s ease-in-out infinite alternate;
   margin: 0;
   will-change: transform;
-  z-index: 1; /* Niedrigere Ebene als der Text */
+  z-index: 1;
 }
 
 /* Schwebeeffekt */
@@ -267,21 +267,21 @@ body.dark-mode {
 }
 @media (max-width: 768px) {
   #hero {
-    flex-direction: column; /* Stapelung auf kleinen Bildschirmen */
+    flex-direction: column;
     align-items: center;
     gap: 2rem;
   }
 
   .textbereich {
-    max-width: 100%; /* Volle Breite auf Mobile */
+    max-width: 100%;
     text-align: center;
-    order: 2; /* Text kommt nach dem Bild */
+    order: 2;
   }
 
   .profilbild {
     width: 250px;
     height: 250px;
-    order: 1; /* Bild kommt vor dem Text */
+    order: 1;
   }
 }
 
@@ -456,7 +456,7 @@ body.dark-mode {
 
 .skill-card i {
   font-size: 2.5rem;
-  color: var(--light); /* ← reagiert automatisch auf den Modus */
+  color: var(--light);
   margin-bottom: 0.5rem;
 }
 
@@ -466,7 +466,7 @@ body.dark-mode {
 h1,
 h2,
 h3 {
-  color: var(--light); /* optional – für Konsistenz */
+  color: var(--light);
 }
 
 .skill-card h3 {
@@ -503,7 +503,7 @@ h3 {
 
 /* Standardfarbe im dunklen Modus */
 .lang-card {
-  color: white; /* oder was du dort aktuell nutzt */
+  color: white;
 }
 
 /* Für den hellen Modus */
@@ -527,7 +527,7 @@ h3 {
 
 /* ===== CONTACT SECTION ===== */
 .kontaktformular {
-  background-color: transparent; /* oder ein dunkler Farbwert wie rgba(0,0,0,0.5) */
+  background-color: transparent;
   background: #2a2a40;
 
   padding: 4rem;
@@ -600,23 +600,23 @@ h3 {
 }
 @media (prefers-color-scheme: light) {
   .kontaktformular {
-    background: #ffffff; /* Weißer Hintergrund */
+    background: #ffffff;
   }
 
   .kontaktformular input,
   .kontaktformular textarea {
-    background-color: #f5f5f5; /* Hellgrau/Weiß */
-    color: #000; /* Schwarzer Text */
-    border-color: #999; /* Dezentere Umrandung */
+    background-color: #f5f5f5;
+    color: #000;
+    border-color: #999;
   }
 
   .kontaktformular input::placeholder,
   .kontaktformular textarea::placeholder {
-    color: #666; /* Platzhalter ebenfalls dunkel, damit sichtbar */
+    color: #666;
   }
 
   .kontaktformular button {
-    color: #fff; /* Weißer Text auf farbigem Button (z. B. Gradient) */
+    color: #fff;
   }
 }
 
@@ -679,7 +679,7 @@ html {
 }
 @media (max-width: 768px) {
   .typing {
-    font-size: 1.2rem; /* Kleinere Schrift */
+    font-size: 1.2rem;
   }
 }
 /* ===== FOOTER ===== */
@@ -736,10 +736,10 @@ footer a:hover {
   }
 
   .header li a {
-    display: block; /* Blockelement für bessere Touch-Targets */
+    display: block;
     padding: 0.75rem;
     margin: 2px 0;
-    background: rgba(255, 255, 255, 0.2); /* Bessere Sichtbarkeit */
+    background: rgba(255, 255, 255, 0.2);
   }
   .header.scrolled {
     background: rgba(0, 0, 0, 0.7);
@@ -825,24 +825,22 @@ footer a:hover {
 }
 /* Dark Mode */
 body[data-theme="dark"] .kontaktformular {
-  background: #2a2a40; /* Hintergrund im Dunkelmodus */
-  color: #fff; /* Textfarbe im Dunkelmodus */
+  background: #2a2a40;
+  color: #fff;
 }
 
 body[data-theme="dark"] .lang-card {
-  background-color: rgba(255, 255, 255, 0.1); /* Leicht durchsichtiger Hintergrund für die Sprachkarten */
-  color: #fff; /* Textfarbe für die Sprachkarten im Dunkelmodus */
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
 }
 
 /* Light Mode */
 body[data-theme="light"] .kontaktformular {
-  background: #fff; /* Heller Hintergrund im Light Mode */
-  color: #000; /* Dunkle Textfarbe im Light Mode */
+  background: #fff;
+  color: #000;
 }
 
 body[data-theme="light"] .lang-card {
-  background-color: #f0f0f0; /* Heller Hintergrund für die Sprachkarten */
-  color: #000; /* Dunkle Textfarbe für die Sprachkarten im Light Mode */
+  background-color: #f0f0f0;
+  color: #000;
 }
-
-

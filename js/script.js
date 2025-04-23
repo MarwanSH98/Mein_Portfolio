@@ -18,7 +18,7 @@ function type() {
 
   if (!isDeleting && j === currentWord.length + 1) {
     isDeleting = true;
-    setTimeout(type, 1000); // Pause nach kompletter Eingabe
+    setTimeout(type, 1000);
     return;
   } else if (isDeleting && j === 0) {
     isDeleting = false;
@@ -45,7 +45,7 @@ if (darkModeToggle) {
 }
 
 // Button-Klick-Animationen
-const buttons = document.querySelectorAll(".clickable-btn"); // Passe die Klasse ggf. an
+const buttons = document.querySelectorAll(".clickable-btn");
 buttons.forEach((btn) =>
   btn.addEventListener("click", () => {
     btn.classList.add("clicked");
@@ -112,13 +112,9 @@ toggle.addEventListener("click", () => {
 document
   .getElementById("contactForm")
   .addEventListener("submit", function (event) {
-    // Keine event.preventDefault() hier, damit das Formular tatsächlich an Formspree gesendet wird
-
-    // Erlaubt Formspree, die Nachricht zu senden
     const form = this;
 
-    // Setze das Formular nach einer kleinen Verzögerung zurück
     setTimeout(() => {
-      form.reset(); // Formular zurücksetzen, wenn die Antwort von Formspree angekommen ist
-    }, 2000); // Verzögerung von 2 Sekunden, damit das Formular erfolgreich gesendet wird
+      form.reset();
+    }, 2000);
   });
