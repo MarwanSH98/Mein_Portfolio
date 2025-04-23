@@ -62,15 +62,6 @@ if (message && typingIndicator) {
   });
 }
 
-// Sprachkarte ein-/ausklappen
-document.querySelectorAll(".lang-card").forEach((card) => {
-  card.addEventListener("click", () => {
-    card.textContent = card.classList.contains("expanded")
-      ? "Deutsch – C2-Niveau (Testdatum: 2023)"
-      : "Deutsch – Fließend";
-  });
-});
-
 // Lebenslauf-Download Button
 const cvButton = document.getElementById("cvButton");
 if (cvButton) {
@@ -118,3 +109,16 @@ toggle.addEventListener("click", () => {
     body.setAttribute("data-theme", "light");
   }
 });
+document
+  .getElementById("contactForm")
+  .addEventListener("submit", function (event) {
+    // Keine event.preventDefault() hier, damit das Formular tatsächlich an Formspree gesendet wird
+
+    // Erlaubt Formspree, die Nachricht zu senden
+    const form = this;
+
+    // Setze das Formular nach einer kleinen Verzögerung zurück
+    setTimeout(() => {
+      form.reset(); // Formular zurücksetzen, wenn die Antwort von Formspree angekommen ist
+    }, 2000); // Verzögerung von 2 Sekunden, damit das Formular erfolgreich gesendet wird
+  });
