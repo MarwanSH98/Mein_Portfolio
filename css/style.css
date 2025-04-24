@@ -703,6 +703,21 @@ footer a:hover {
   color: var(--accent);
   transform: translateY(-5px);
 }
+/* Footer im Light Mode */
+body[data-theme="light"] footer {
+  background: #f9f9f9; /* Heller Hintergrund */
+  color: #000; /* Dunkle Schriftfarbe */
+  border-top: 1px solid #000;
+}
+
+body[data-theme="light"] footer a {
+  color: #000; /* Dunkle Linkfarbe */
+}
+
+body[data-theme="light"] footer a:hover {
+  color: var(--accent); /* Optional Akzentfarbe beim Hover */
+}
+
 
 /* ===== ANIMATIONS ===== */
 @keyframes float {
