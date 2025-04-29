@@ -15,7 +15,7 @@
 body {
   --dark: #1a1a2e;
   --light: #f8f9fa;
-
+  padding-bottom: 80px; /* Platz für Button */
   font-family: "Inter", sans-serif;
   background: var(--dark);
   color: var(--light);
@@ -634,6 +634,7 @@ h3 {
   font-size: 24px;
   cursor: pointer;
   transition: all 0.3s ease-in;
+  z-index: 9999;
 }
 
 .scroll-to-top:hover {
@@ -717,7 +718,6 @@ body[data-theme="light"] footer a {
 body[data-theme="light"] footer a:hover {
   color: var(--accent); /* Optional Akzentfarbe beim Hover */
 }
-
 
 /* ===== ANIMATIONS ===== */
 @keyframes float {
@@ -858,4 +858,8 @@ body[data-theme="light"] .kontaktformular {
 body[data-theme="light"] .lang-card {
   background-color: #f0f0f0;
   color: #000;
+}
+#top {
+  display: block;
+  height: 1px;
 }
