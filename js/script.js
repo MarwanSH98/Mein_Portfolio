@@ -118,3 +118,11 @@ document
       form.reset();
     }, 2000);
   });
+// Hinweistext programmatisch hinzufügen
+document.addEventListener("DOMContentLoaded", function () {
+  const jsNote = document.querySelector("#js-skill .skill-note");
+  jsNote.textContent = "Ich lerne aktuell aktiv JavaScript.";
+  jsNote.style.fontStyle = "italic";
+  jsNote.style.color = "#888";
+  jsNote.style.fontSize = "13px";
+});
