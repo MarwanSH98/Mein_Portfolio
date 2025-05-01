@@ -125,4 +125,10 @@ document.addEventListener("DOMContentLoaded", function () {
   jsNote.style.fontStyle = "italic";
   jsNote.style.color = "#888";
   jsNote.style.fontSize = "13px";
+
+  const btNote = document.querySelector("#bt-skill .skill-note");
+  btNote.textContent = "Ich bin noch dabei, Bootstrap zu lernen.";
+  btNote.style.fontStyle = "italic";
+  btNote.style.color = "#888";
+  btNote.style.fontSize = "13px";
 });
