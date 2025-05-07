@@ -1,134 +1,255 @@
-// Tippeffekt für das Hero-Text-Element
-const words = ["Angehender Webentwickler", "Coder", "Tech-Liebhaber"];
-let i = 0;
-let j = 0;
-let currentWord = "";
-let isDeleting = false;
-const typingElement = document.querySelector(".typing");
+// ========== GLOBALE VARIABLEN ==========
+const darkModeToggle = document.getElementById('darkModeToggle');
+const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
+const mobileMenuButton = document.getElementById('mobileMenuButton');
+const mobileMenu = document.getElementById('mobileMenu');
+const scrollToTopBtn = document.querySelector('.scroll-to-top');
+const contactForm = document.getElementById('contactForm');
+const navLinks = document.querySelectorAll('.nav-link, #mobileMenu a');
 
-function type() {
-  if (!typingElement) return;
+// ========== DARK MODE FUNKTIONALITÄT ==========
+function toggleDarkMode() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  
+  // Theme umschalten
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  
+  // Icon aktualisieren
+  const icons = document.querySelectorAll('#darkModeToggle i, #darkModeToggleMobile i');
+  icons.forEach(icon => {
+    icon.className = isDark ? 'fas fa-sun text-yellow-300' : 'fas fa-moon text-yellow-300';
+  });
+  
+  // Text aktualisieren (nur mobile)
+  const darkModeText = document.querySelector('#darkModeToggleMobile span');
+  if (darkModeText) {
+    darkModeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+  }
+  
+  // Status speichern
+  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+}
 
-  currentWord = words[i];
-  if (isDeleting) {
-    typingElement.textContent = currentWord.substring(0, j--);
+function loadThemePreference() {
+  const savedTheme = localStorage.getItem('theme') || 
+                    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  
+  // Icons entsprechend setzen
+  const isDark = savedTheme === 'dark';
+  const icons = document.querySelectorAll('#darkModeToggle i, #darkModeToggleMobile i');
+  icons.forEach(icon => {
+    icon.className = isDark ? 'fas fa-moon text-yellow-300' : 'fas fa-sun text-yellow-300';
+  });
+  
+  // Text aktualisieren (nur mobile)
+  const darkModeText = document.querySelector('#darkModeToggleMobile span');
+  if (darkModeText) {
+    darkModeText.textContent = isDark ? 'Dark Mode' : 'Light Mode';
+  }
+}
+
+// ========== MOBILE MENU TOGGLE ==========
+function toggleMobileMenu() {
+  mobileMenu.classList.toggle('hidden');
+  mobileMenu.classList.toggle('show');
+  
+  // Icon ändern (Hamburger zu X und umgekehrt)
+  const icon = mobileMenuButton.querySelector('i');
+  if (mobileMenu.classList.contains('show')) {
+    icon.className = 'fas fa-times';
   } else {
-    typingElement.textContent = currentWord.substring(0, j++);
+    icon.className = 'fas fa-bars';
   }
+}
 
-  if (!isDeleting && j === currentWord.length + 1) {
-    isDeleting = true;
-    setTimeout(type, 1000);
-    return;
-  } else if (isDeleting && j === 0) {
-    isDeleting = false;
-    i = (i + 1) % words.length;
+// ========== SMOOTH SCROLLING ==========
+function smoothScroll(e) {
+  e.preventDefault();
+  const targetId = this.getAttribute('href');
+  const targetElement = document.querySelector(targetId);
+  
+  // Mobile Menu schließen
+  if (mobileMenu.classList.contains('show')) {
+    toggleMobileMenu();
   }
-
-  const speed = isDeleting ? 50 : 100;
-  setTimeout(type, speed);
-}
-type();
-
-// Fortschrittsbalken animieren
-document.querySelectorAll(".progress-bar div").forEach((bar) => {
-  bar.style.width = "0";
-  setTimeout(() => (bar.style.width = bar.textContent), 500);
-});
-
-// Dark Mode Toggle
-const darkModeToggle = document.getElementById("darkModeToggle");
-if (darkModeToggle) {
-  darkModeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
+  
+  // Zum Ziel scrollen
+  targetElement.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
   });
 }
 
-// Button-Klick-Animationen
-const buttons = document.querySelectorAll(".clickable-btn");
-buttons.forEach((btn) =>
-  btn.addEventListener("click", () => {
-    btn.classList.add("clicked");
-    setTimeout(() => btn.classList.remove("clicked"), 300);
-  })
-);
+// ========== SCROLL-TO-TOP BUTTON ==========
+function handleScroll() {
+  // Button anzeigen/verstecken
+  if (window.scrollY > 300) {
+    scrollToTopBtn.classList.add('show');
+  } else {
+    scrollToTopBtn.classList.remove('show');
+  }
+  
+  // Aktiven Nav-Link hervorheben
+  highlightActiveSection();
+}
 
-// Tippen-Indikator im Kontaktformular
-const message = document.getElementById("message");
-const typingIndicator = document.getElementById("typing-indicator");
-if (message && typingIndicator) {
-  message.addEventListener("input", () => {
-    typingIndicator.style.display = message.value ? "block" : "none";
+function scrollToTop(e) {
+  e.preventDefault();
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
   });
 }
 
-// Lebenslauf-Download Button
-const cvButton = document.getElementById("cvButton");
-if (cvButton) {
-  cvButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    cvButton.innerHTML =
-      '<i class="fas fa-spinner fa-spin"></i> Wird heruntergeladen...';
-    setTimeout(() => (window.location.href = "CV/Bewerbung.pdf"), 1500);
-  });
-}
-
-// Konami-Code Easter Egg
-const konamiCode = [
-  "ArrowUp",
-  "ArrowUp",
-  "ArrowDown",
-  "ArrowDown",
-  "ArrowLeft",
-  "ArrowRight",
-  "ArrowLeft",
-  "ArrowRight",
-  "b",
-  "a",
-];
-let index = 0;
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === konamiCode[index]) {
-    index++;
-    if (index === konamiCode.length) {
-      document.body.style.background =
-        'url("https://i.giphy.com/media/3o7aTskHEUdgCQAXde/giphy.webp")';
-      index = 0;
+// ========== AKTIVE SECTION HERVORHEBEN ==========
+function highlightActiveSection() {
+  const scrollPosition = window.scrollY;
+  
+  document.querySelectorAll('section').forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    const sectionHeight = section.offsetHeight;
+    const sectionId = section.getAttribute('id');
+    
+    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${sectionId}`) {
+          link.classList.add('active');
+        }
+      });
     }
-  } else {
-    index = 0;
-  }
-});
-const toggle = document.getElementById("darkModeToggle");
-toggle.addEventListener("click", () => {
-  const body = document.body;
-  if (body.getAttribute("data-theme") === "light") {
-    body.setAttribute("data-theme", "dark");
-  } else {
-    body.setAttribute("data-theme", "light");
-  }
-});
-document
-  .getElementById("contactForm")
-  .addEventListener("submit", function (event) {
-    const form = this;
-
-    setTimeout(() => {
-      form.reset();
-    }, 2000);
   });
-// Hinweistext programmatisch hinzufügen
-document.addEventListener("DOMContentLoaded", function () {
-  const jsNote = document.querySelector("#js-skill .skill-note");
-  jsNote.textContent = "Ich lerne aktuell aktiv JavaScript.";
-  jsNote.style.fontStyle = "italic";
-  jsNote.style.color = "#888";
-  jsNote.style.fontSize = "13px";
+}
 
-  const btNote = document.querySelector("#bt-skill .skill-note");
-  btNote.textContent = "Ich bin noch dabei, Bootstrap zu lernen.";
-  btNote.style.fontStyle = "italic";
-  btNote.style.color = "#888";
-  btNote.style.fontSize = "13px";
+// ========== FORMULAR VALIDIERUNG ==========
+function validateForm(e) {
+  e.preventDefault();
+  
+  // Formular-Daten sammeln
+  const formData = new FormData(contactForm);
+  const data = Object.fromEntries(formData);
+  
+  // Einfache Validierung
+  if (!data.name || !data.email || !data.message) {
+    alert('Bitte füllen Sie alle erforderlichen Felder aus.');
+    return;
+  }
+  
+  // Email Validierung
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(data.email)) {
+    alert('Bitte geben Sie eine gültige Email-Adresse ein.');
+    return;
+  }
+  
+  // Formular absenden (hier würde normalerweise AJAX/Fetch stehen)
+  contactForm.submit();
+}
+
+// ========== TYPEWRITER EFFECT ==========
+function initTypewriter() {
+  const nameElement = document.querySelector('.typing-name');
+  const descriptionElement = document.querySelector('.typing');
+  
+  if (!nameElement || !descriptionElement) return;
+  
+  const nameText = "Marwan Sabah";
+  const words = ["Angehender Web- Softwarentwickler", "Coder", "Tech-Liebhaber", "Lernender"];
+  
+  let nameIndex = 0;
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  
+  function typeName() {
+    if (nameIndex < nameText.length) {
+      nameElement.textContent += nameText.charAt(nameIndex);
+      nameIndex++;
+      setTimeout(typeName, 150);
+    } else {
+      typeDescription();
+    }
+  }
+  
+  function typeDescription() {
+    const currentWord = words[wordIndex];
+    
+    if (isDeleting) {
+      descriptionElement.textContent = currentWord.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      descriptionElement.textContent = currentWord.substring(0, charIndex + 1);
+      charIndex++;
+    }
+    
+    if (!isDeleting && charIndex === currentWord.length) {
+      isDeleting = true;
+      setTimeout(typeDescription, 1000);
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+      setTimeout(typeDescription, 500);
+    } else {
+      setTimeout(typeDescription, isDeleting ? 50 : 150);
+    }
+  }
+  
+  typeName();
+}
+
+// ========== SCROLL ANIMATIONEN ==========
+function initScrollAnimations() {
+  const observerOptions = {
+    threshold: 0.1
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fadeIn');
+      }
+    });
+  }, observerOptions);
+  
+  document.querySelectorAll('section').forEach(section => {
+    observer.observe(section);
+  });
+}
+
+// ========== EVENT LISTENER ==========
+document.addEventListener('DOMContentLoaded', () => {
+  // Theme laden
+  loadThemePreference();
+  
+  // Dark Mode Toggle
+  if (darkModeToggle) darkModeToggle.addEventListener('click', toggleDarkMode);
+  if (darkModeToggleMobile) darkModeToggleMobile.addEventListener('click', toggleDarkMode);
+  
+  // Mobile Menu
+  if (mobileMenuButton) mobileMenuButton.addEventListener('click', toggleMobileMenu);
+  
+  // Smooth Scrolling
+  navLinks.forEach(link => {
+    link.addEventListener('click', smoothScroll);
+  });
+  
+  // Scroll to Top
+  if (scrollToTopBtn) {
+    scrollToTopBtn.addEventListener('click', scrollToTop);
+    window.addEventListener('scroll', handleScroll);
+  }
+  
+  // Form Validation
+  if (contactForm) {
+    contactForm.addEventListener('submit', validateForm);
+  }
+  
+  // Typewriter Effect
+  initTypewriter();
+  
+  // Scroll Animations
+  initScrollAnimations();
 });

@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marwan Sabah | Frontend Developer</title>
+    <meta name="description" content="Portfolio von Marwan Sabah - Frontend Entwickler mit Fokus auf moderne Webtechnologien">
+    <meta name="author" content="Marwan Sabah">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gradient: linear-gradient(135deg, #7209b7 0%, #4361ee 100%);
+            --glass: rgba(255, 255, 255, 0.1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --border-radius: 16px;
+            --glow-accent: 0 0 15px #f72585aa;
+        }
+
+        /* Dark Mode Variablen */
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --nav-bg: rgba(31, 41, 55, 0.8);
+            --card-bg: rgba(31, 41, 55, 0.5);
+            --border-color: rgba(55, 65, 81, 0.5);
+        }
+
+        /* Light Mode Variablen */
+        [data-theme="light"] {
+            --bg-color: #ffffff;
+            --text-color: #111111;
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --border-color: rgba(209, 213, 219, 0.7);
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav {
+            background-color: var(--nav-bg);
+            border-bottom-color: var(--border-color);
+        }
+
+        .skill-card, .contact-card {
+            background-color: var(--card-bg);
+            border-color: var(--border-color);
+        }
+
+        /* Typing Animation */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary) }
+        }
+
+        /* Scroll to Top Button */
+        #scrollToTop {
+            transition: all 0.3s ease;
+        }
+
+        #scrollToTop.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Mobile Menu Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #mobileMenu.show {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        /* Active Nav Link */
+        .nav-link.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="font-inter">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 backdrop-blur-md border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <span class="text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">MS</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-4">
+                        <a href="#home" class="nav-link hover:text-blue-400 transition-colors">Home</a>
+                        <a href="#about" class="nav-link hover:text-blue-400 transition-colors">Über mich</a>
+                        <a href="#skills" class="nav-link hover:text-blue-400 transition-colors">Skills</a>
+                        <a href="#contact" class="nav-link hover:text-blue-400 transition-colors">Kontakt</a>
+                        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-moon text-yellow-300"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobileMenuButton" class="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="hidden md:hidden backdrop-blur-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">Home</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">Über mich</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">Skills</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">Kontakt</a>
+                <div class="px-3 py-2">
+                    <button id="darkModeToggleMobile" class="flex items-center">
+                        <i class="fas fa-moon mr-2 text-yellow-300"></i>
+                        <span>Dark Mode</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-gray-900/80 z-0"></div>
+        <div class="absolute inset-0 opacity-20 z-0"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-10">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+                <div class="md:w-1/2 space-y-6">
+                    <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+                        Hallo, ich bin
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
+                            <span class="typing-name"></span>
+                        </span>
+                    </h1>
+                    
+                    <div class="typing-description">
+                        <span class="typing"></span>
+                    </div>
+                    
+                    <p class="text-lg max-w-lg">
+                        Ich bin ein leidenschaftlicher Frontend-Entwickler mit Fokus auf moderne Webtechnologien und benutzerfreundliche Interfaces.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <a href="#" class="btn-primary px-6 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium hover:from-blue-600 hover:to-purple-700 transition-all flex items-center">
+                            <i class="fas fa-download mr-2"></i> Lebenslauf
+                        </a>
+                        <a href="#contact" class="btn-secondary px-6 py-3 rounded-lg border border-gray-300 dark:border-gray-600 font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-all flex items-center">
+                            <i class="fas fa-envelope mr-2"></i> Kontakt
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/320" alt="Marwan Sabah" class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-blue-500/30 shadow-xl">
+                        <div class="absolute -inset-4 rounded-full border-2 border-blue-400/50 animate-spin-slow opacity-70"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Über</span> mich
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-semibold">Meine Reise als Entwickler</h3>
+                    <p>
+                        Hey! Ich bin ein begeisterter Bachelor-Absolvent mit Fokus auf Web- und Softwareentwicklung. Meine ersten Projekte habe ich mit WordPress umgesetzt, später folgten eigene Webseiten mit HTML, CSS und JavaScript. Neben Erfahrungen mit Java und agilen Methoden wie Scrum arbeite ich auch routiniert mit Tools wie Jira und Confluence. Neue Technologien und spannende Herausforderungen motivieren mich, ständig dazuzulernen, ob im Web- oder in der Softwareentwicklung.
+                    </p>
+                    
+                    <div class="pt-4">
+                        <a href="#skills" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                            Meine Skills <i class="fas fa-arrow-down ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="skill-card p-8 rounded-xl border shadow-lg">
+                    <h3 class="text-xl font-semibold mb-6">Persönliche Informationen</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <div class="bg-blue-500/10 p-2 rounded-lg mr-4">
+                                <i class="fas fa-user text-blue-400"></i>
+                            </div>
+                            <div>
+                                <span class="block text-sm">Name</span>
+                                <span class="font-medium">Marwan Sabah</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-purple-500/10 p-2 rounded-lg mr-4">
+                                <i class="fas fa-map-marker-alt text-purple-400"></i>
+                            </div>
+                            <div>
+                                <span class="block text-sm">Standort</span>
+                                <span class="font-medium">Deutschland</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-green-500/10 p-2 rounded-lg mr-4">
+                                <i class="fas fa-language text-green-400"></i>
+                            </div>
+                            <div>
+                                <span class="block text-sm">Sprachen</span>
+                                <span class="font-medium">Deutsch, Kurdisch, Arabisch, Englisch</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-100 dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Meine
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Skills</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Technical Skills -->
+                <div class="skill-card p-6 rounded-xl border shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-500/10 p-3 rounded-lg mr-4">
+                            <i class="fas fa-code text-blue-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Technische Fähigkeiten</h3>
+                    </div>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">HTML5</span>
+                                <span class="text-sm">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-blue-500 h-2.5 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">CSS3</span>
+                                <span class="text-sm">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-blue-500 h-2.5 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">JavaScript</span>
+                                <span class="text-sm">30%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-blue-500 h-2.5 rounded-full" style="width: 30%"></div>
+                            </div>
+                            <p class="text-xs mt-1 italic">
+                                Ich lerne aktuell aktiv JavaScript
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">Java</span>
+                                <span class="text-sm">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-blue-500 h-2.5 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tools & Frameworks -->
+                <div class="skill-card p-6 rounded-xl border shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-purple-500/10 p-3 rounded-lg mr-4">
+                            <i class="fas fa-tools text-purple-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Tools & Frameworks</h3>
+                    </div>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">WordPress</span>
+                                <span class="text-sm">50%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-purple-500 h-2.5 rounded-full" style="width: 50%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">Bootstrap</span>
+                                <span class="text-sm">30%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-purple-500 h-2.5 rounded-full" style="width: 30%"></div>
+                            </div>
+                            <p class="text-xs mt-1 italic">
+                                Ich bin noch dabei, Bootstrap zu lernen
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">Git</span>
+                                <span class="text-sm">60%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-purple-500 h-2.5 rounded-full" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">VS Code</span>
+                                <span class="text-sm">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-purple-500 h-2.5 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Languages -->
+                <div class="skill-card p-6 rounded-xl border shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-green-500/10 p-3 rounded-lg mr-4">
+                            <i class="fas fa-language text-green-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Sprachen</h3>
+                    </div>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">Deutsch</span>
+                                <span class="text-sm">Fließend</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-green-500 h-2.5 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">Kurdisch</span>
+                                <span class="text-sm">Muttersprache</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-green-500 h-2.5 rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">Arabisch</span>
+                                <span class="text-sm">Verhandlungssicher</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-green-500 h-2.5 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">Englisch</span>
+                                <span class="text-sm">Grundkenntnisse</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-green-500 h-2.5 rounded-full" style="width: 50%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Kontakt</span> aufnehmen
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+                <p class="max-w-2xl mx-auto mt-4">
+                    Haben Sie Fragen oder möchten Sie zusammenarbeiten? Schreiben Sie mir eine Nachricht!
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="contact-card p-8 rounded-xl border shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-6">Kontaktinformationen</h3>
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <div class="bg-blue-500/10 p-3 rounded-lg mr-4">
+                                <i class="fas fa-envelope text-blue-400"></i>
+                            </div>
+                            <div>
+                                <span class="block text-sm">Email</span>
+                                <a href="mailto:marwansabah685@gmail.com" class="font-medium hover:text-blue-400 transition-colors">marwansabah685@gmail.com</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-purple-500/10 p-3 rounded-lg mr-4">
+                                <i class="fas fa-phone-alt text-purple-400"></i>
+                            </div>
+                            <div>
+                                <span class="block text-sm">Telefon</span>
+                                <a href="tel:+49123456789" class="font-medium hover:text-purple-400 transition-colors">+49 176 625 585 99</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-green-500/10 p-3 rounded-lg mr-4">
+                                <i class="fas fa-map-marker-alt text-green-400"></i>
+                            </div>
+                            <div>
+                                <span class="block text-sm">Standort</span>
+                                <span class="font-medium">Deutschland</span>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-10">
+                        <h4 class="text-lg font-medium mb-4">Folgen Sie mir</h4>
+                        <div class="flex space-x-4">
+                            <a href="https://www.linkedin.com/in/marwan-sabah-a49b68340" target="_blank" class="social-icon w-10 h-10 rounded-full flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white transition-colors">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/" target="_blank" class="social-icon w-10 h-10 rounded-full flex items-center justify-center bg-gray-700 hover:bg-gray-800 text-white transition-colors">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.instagram.com/marwan_98.x/" target="_blank" class="social-icon w-10 h-10 rounded-full flex items-center justify-center bg-pink-600 hover:bg-pink-700 text-white transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://snapchat.com/t/8XVWRj2z" target="_blank" class="social-icon w-10 h-10 rounded-full flex items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-white transition-colors">
+                                <i class="fab fa-snapchat-ghost"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="contact-card p-8 rounded-xl border shadow-xl">
+                    <form id="contactForm" class="grid gap-6">
+                        <div class="flex flex-col">
+                            <label for="name" class="text-sm mb-2">Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Ihr Name" class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="email" class="text-sm mb-2">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="Ihre Email-Adresse" class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="subject" class="text-sm mb-2">Betreff</label>
+                            <input type="text" id="subject" name="subject" placeholder="Betreff" class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="message" class="text-sm mb-2">Nachricht</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Ihre Nachricht" class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
+                                <i class="fas fa-paper-plane"></i>
+                                Nachricht senden
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 dark:border-gray-800 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <span class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Marwan Sabah</span>
+                <nav class="flex flex-wrap justify-center gap-4 text-sm font-medium">
+                    <a href="#home" class="hover:text-blue-400 transition">Home</a>
+                    <a href="#about" class="hover:text-blue-400 transition">Über mich</a>
+                    <a href="#skills" class="hover:text-blue-400 transition">Skills</a>
+                    <a href="#contact" class="hover:text-blue-400 transition">Kontakt</a>
+                </nav>
+            </div>
+            
+            <div class="mt-8 border-t border-gray-200 dark:border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-sm text-center md:text-left">
+                    &copy; 2024 Marwan Sabah. Alle Rechte vorbehalten.
+                </p>
+                <div class="flex space-x-4 text-xl">
+                    <a href="https://www.linkedin.com/in/marwan-sabah-a49b68340" target="_blank" class="hover:text-blue-500 transition">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/MarwanSH98" target="_blank" class="hover:text-gray-700 dark:hover:text-gray-300 transition">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.instagram.com/marwan_98.x/" target="_blank" class="hover:text-pink-500 transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://snapchat.com/t/8XVWRj2z" target="_blank" class="hover:text-yellow-400 transition">
+                        <i class="fab fa-snapchat-ghost"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all opacity-0 invisible transform translate-y-4">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // ========== DARK MODE FUNKTIONALITÄT ==========
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        const contactForm = document.getElementById('contactForm');
+        const navLinks = document.querySelectorAll('.nav-link, #mobileMenu a');
+
+        // Theme umschalten
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            
+            // Theme umschalten
+            html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            
+            // Icon aktualisieren
+            const icons = document.querySelectorAll('#darkModeToggle i, #darkModeToggleMobile i');
+            icons.forEach(icon => {
+                icon.className = isDark ? 'fas fa-sun text-yellow-300' : 'fas fa-moon text-yellow-300';
+            });
+            
+            // Text aktualisieren (nur mobile)
+            const darkModeText = document.querySelector('#darkModeToggleMobile span');
+            if (darkModeText) {
+                darkModeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+            }
+            
+            // Status speichern
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        }
+
+        // Gespeichertes Theme laden
+        function loadThemePreference() {
+            const savedTheme = localStorage.getItem('theme') || 
+                             (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            // Icons entsprechend setzen
+            const isDark = savedTheme === 'dark';
+            const icons = document.querySelectorAll('#darkModeToggle i, #darkModeToggleMobile i');
+            icons.forEach(icon => {
+                icon.className = isDark ? 'fas fa-moon text-yellow-300' : 'fas fa-sun text-yellow-300';
+            });
+            
+            // Text aktualisieren (nur mobile)
+            const darkModeText = document.querySelector('#darkModeToggleMobile span');
+            if (darkModeText) {
+                darkModeText.textContent = isDark ? 'Dark Mode' : 'Light Mode';
+            }
+        }
+
+        // ========== MOBILE MENU TOGGLE ==========
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('show');
+            
+            // Icon ändern (Hamburger zu X und umgekehrt)
+            const icon = mobileMenuButton.querySelector('i');
+            if (mobileMenu.classList.contains('show')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
+        }
+
+        // ========== SMOOTH SCROLLING ==========
+        function smoothScroll(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            // Mobile Menu schließen
+            if (mobileMenu.classList.contains('show')) {
+                toggleMobileMenu();
+            }
+            
+            // Zum Ziel scrollen
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // ========== SCROLL-TO-TOP BUTTON ==========
+        function handleScroll() {
+            // Button anzeigen/verstecken
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.remove('opacity-0', 'invisible', 'translate-y-4');
+                scrollToTopBtn.classList.add('opacity-100', 'visible', 'translate-y-0');
+            } else {
+                scrollToTopBtn.classList.add('opacity-0', 'invisible', 'translate-y-4');
+                scrollToTopBtn.classList.remove('opacity-100', 'visible', 'translate-y-0');
+            }
+            
+            // Aktiven Nav-Link hervorheben
+            highlightActiveSection();
+        }
+
+        function scrollToTop(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // ========== AKTIVE SECTION HERVORHEBEN ==========
+        function highlightActiveSection() {
+            const scrollPosition = window.scrollY;
+            
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        // ========== FORMULAR VALIDIERUNG ==========
+        function validateForm(e) {
+            e.preventDefault();
+            
+            // Formular-Daten sammeln
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+            
+            // Einfache Validierung
+            if (!data.name || !data.email || !data.message) {
+                alert('Bitte füllen Sie alle erforderlichen Felder aus.');
+                return;
+            }
+            
+            // Email Validierung
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                alert('Bitte geben Sie eine gültige Email-Adresse ein.');
+                return;
+            }
+            
+            // Erfolgsmeldung
+            alert('Vielen Dank für Ihre Nachricht! Ich werde mich so schnell wie möglich bei Ihnen melden.');
+            contactForm.reset();
+        }
+
+        // ========== TYPEWRITER EFFECT ==========
+        function initTypewriter() {
+            const nameElement = document.querySelector('.typing-name');
+            const descriptionElement = document.querySelector('.typing');
+            
+            if (!nameElement || !descriptionElement) return;
+            
+            const nameText = "Marwan Sabah";
+            const words = ["Angehender Web- Softwarentwickler", "Coder", "Tech-Liebhaber", "Lernender"];
+            
+            let nameIndex = 0;
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            
+            function typeName() {
+                if (nameIndex < nameText.length) {
+                    nameElement.textContent += nameText.charAt(nameIndex);
+                    nameIndex++;
+                    setTimeout(typeName, 150);
+                } else {
+                    typeDescription();
+                }
+            }
+            
+            function typeDescription() {
+                const currentWord = words[wordIndex];
+                
+                if (isDeleting) {
+                    descriptionElement.textContent = currentWord.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    descriptionElement.textContent = currentWord.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+                
+                if (!isDeleting && charIndex === currentWord.length) {
+                    isDeleting = true;
+                    setTimeout(typeDescription, 1000);
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                    setTimeout(typeDescription, 500);
+                } else {
+                    setTimeout(typeDescription, isDeleting ? 50 : 150);
+                }
+            }
+            
+            typeName();
+        }
+
+        // ========== EVENT LISTENER ==========
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme laden
+            loadThemePreference();
+            
+            // Dark Mode Toggle
+            if (darkModeToggle) darkModeToggle.addEventListener('click', toggleDarkMode);
+            if (darkModeToggleMobile) darkModeToggleMobile.addEventListener('click', toggleDarkMode);
+            
+            // Mobile Menu
+            if (mobileMenuButton) mobileMenuButton.addEventListener('click', toggleMobileMenu);
+            
+            // Smooth Scrolling
+            navLinks.forEach(link => {
+                link.addEventListener('click', smoothScroll);
+            });
+            
+            // Scroll to Top
+            if (scrollToTopBtn) {
+                scrollToTopBtn.addEventListener('click', scrollToTop);
+                window.addEventListener('scroll', handleScroll);
+            }
+            
+            // Form Validation
+            if (contactForm) {
+                contactForm.addEventListener('submit', validateForm);
+            }
+            
+            // Typewriter Effect
+            initTypewriter();
+            
+            // Initialen Scroll-Status prüfen
+            handleScroll();
+        });
+    </script>
+</body>
+</html>
