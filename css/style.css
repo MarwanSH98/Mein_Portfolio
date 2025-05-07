@@ -101,6 +101,7 @@ section {
 .typing-name,
 .typing {
   display: inline-block;
+  color: var(--text-color);
 }
 
 .typing-description {
@@ -480,7 +481,9 @@ footer {
   ); /* Verwende die nav-bg Variable für den Light Mode */
 }
 [data-theme="light"] nav {
-  background-color: var(--nav-bg); /* Verwendung der var(--nav-bg) für den Header */
+  background-color: var(
+    --nav-bg
+  ); /* Verwendung der var(--nav-bg) für den Header */
   backdrop-filter: blur(10px); /* Optional für einen Unschärfe-Effekt */
   color: var(--text-color); /* Textfarbe für den Header */
 }
