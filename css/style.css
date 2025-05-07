@@ -574,13 +574,17 @@ footer {
 @media (max-width: 768px) {
   .logo-container {
     padding: 0;
+
+    width: 180px;
+    height: auto;
   }
 
   .logo-image {
     height: auto;
-    width: 120px;
-    max-height: 3rem;
-    animation: none; /* Animation deaktivieren */
+    width: 100%;
+    max-height: 7.5rem;
+    min-width: 150px;
+    animation: none;
     transform: none !important;
     filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2)) brightness(0) invert(0);
   }
@@ -589,7 +593,6 @@ footer {
     filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.3)) brightness(0) invert(1);
   }
 }
-
 /* Performance Optimierung */
 @media (prefers-reduced-motion: reduce) {
   .logo-image,
