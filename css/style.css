@@ -572,13 +572,21 @@ footer {
 
 /* Responsive Anpassungen */
 @media (max-width: 768px) {
-  .logo-image {
-    height: 9rem;
-    animation-duration: 8s;
+  .logo-container {
+    padding: 0;
   }
 
-  .logo-link:hover .logo-image {
-    transform: scale(1.1) rotate(-5deg);
+  .logo-image {
+    height: auto;
+    width: 120px;
+    max-height: 3rem;
+    animation: none; /* Animation deaktivieren */
+    transform: none !important;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2)) brightness(0) invert(0);
+  }
+
+  [data-theme="dark"] .logo-image {
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.3)) brightness(0) invert(1);
   }
 }
 
