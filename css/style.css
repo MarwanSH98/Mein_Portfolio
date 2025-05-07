@@ -101,7 +101,6 @@ section {
 .typing-name,
 .typing {
   display: inline-block;
-  color: var(--text-color);
 }
 
 .typing-description {
@@ -218,6 +217,11 @@ footer {
   .btn-secondary {
     padding: 0.625rem 1.25rem;
     font-size: 0.875rem;
+  }
+  .typing-name {
+    color: var(--text-color); 
+    opacity: 1;
+    display: inline-block;
   }
 }
 
