@@ -219,7 +219,7 @@ footer {
     font-size: 0.875rem;
   }
   .typing-name {
-    color: var(--text-color); 
+    color: var(--text-color);
     opacity: 1;
     display: inline-block;
   }
@@ -497,5 +497,96 @@ footer {
 }
 
 [data-theme="light"] .nav-link:hover {
-  color: #3b82f6; /* Blauer Hover-Effekt für Links */
+  color: #3b82f6;
+}
+/* ===== MODERN LOGO ANIMATION ===== */
+.logo-link {
+  display: inline-block;
+  position: relative;
+  z-index: 10;
+  transform-style: preserve-3d;
+  padding: 5px 0; /* Puffer für Animation */
+}
+.logo-container {
+  overflow: hidden; /* Verhindert Überschreiten der Grenzen */
+  position: relative;
+}
+
+.logo-image {
+  height: 12rem;
+  width: auto;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.12)) brightness(0) invert(0);
+  transform: translateZ(0);
+  transform: perspective(1000px) rotateX(2deg) rotateY(2deg);
+}
+
+/* Dark Mode Anpassung */
+[data-theme="dark"] .logo-image {
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.25)) brightness(0) invert(1);
+}
+
+/* Hover Animation */
+.logo-link:hover .logo-image {
+  transform: scale(1.15) rotate(-8deg) translateZ(10px);
+  filter: drop-shadow(0 6px 20px rgba(59, 130, 246, 0.3)) brightness(0)
+    invert(0);
+}
+
+[data-theme="dark"] .logo-link:hover .logo-image {
+  filter: drop-shadow(0 6px 24px rgba(139, 92, 246, 0.4)) brightness(0)
+    invert(1);
+}
+
+/* Hover Effekt Element */
+.logo-hover-effect {
+  background: radial-gradient(
+    circle at center,
+    rgba(59, 130, 246, 0.4) 0%,
+    transparent 70%
+  );
+  z-index: -1;
+  border-radius: 50%;
+  transform: scale(0.9);
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.logo-link:hover .logo-hover-effect {
+  transform: scale(1.4);
+}
+
+/* Pulsierende Animation */
+@keyframes logo-float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.03);
+  }
+}
+
+.logo-image {
+  animation: logo-float 6s ease-in-out infinite;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 768px) {
+  .logo-image {
+    height: 9rem;
+    animation-duration: 8s;
+  }
+
+  .logo-link:hover .logo-image {
+    transform: scale(1.1) rotate(-5deg);
+  }
+}
+
+/* Performance Optimierung */
+@media (prefers-reduced-motion: reduce) {
+  .logo-image,
+  .logo-hover-effect {
+    animation: none !important;
+    transition: none !important;
+  }
 }
