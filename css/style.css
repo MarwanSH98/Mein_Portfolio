@@ -184,7 +184,9 @@ footer {
   background-color: #2563eb;
   transform: translateY(-3px);
 }
-
+[data-theme="light"] #mobileMenu {
+  background-color: rgba(255, 255, 255, 0.9);
+}
 /* === Animations === */
 @keyframes spin-slow {
   from {
@@ -219,7 +221,14 @@ footer {
     font-size: 0.875rem;
   }
   .typing-name {
-    color: var(--text-color);
+    background: linear-gradient(
+      to right,
+      #3b82f6,
+      #a855f7
+    ); 
+    -webkit-background-clip: text; 
+    background-clip: text; 
+    color: transparent; 
     opacity: 1;
     display: inline-block;
   }
@@ -383,11 +392,11 @@ footer {
 
 /* Light Mode Variablen - KONTRAST OPTIMIERT */
 [data-theme="light"] {
-  --bg-color: #f8fafc; /* Heller Hintergrund */
-  --text-color: #1e293b; /* Dunkelgrau für bessere Lesbarkeit */
-  --nav-bg: rgba(248, 250, 252, 0.9); /* Leicht transparent */
-  --card-bg: rgba(255, 255, 255, 0.9); /* Weiß mit Transparenz */
-  --border-color: rgba(203, 213, 225, 0.7); /* Hellgraue Border */
+  --bg-color: #f8fafc;
+  --text-color: #1e293b;
+  --nav-bg: rgba(248, 250, 252, 0.9);
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --border-color: rgba(203, 213, 225, 0.7);
 }
 [data-theme="light"] .text-gray-300 {
   color: #475569; /* Dunkleres Grau für bessere Lesbarkeit */
@@ -485,11 +494,10 @@ footer {
   ); /* Verwende die nav-bg Variable für den Light Mode */
 }
 [data-theme="light"] nav {
-  background-color: var(
-    --nav-bg
-  ); /* Verwendung der var(--nav-bg) für den Header */
+  background-color: var(--nav-bg);
   backdrop-filter: blur(10px); /* Optional für einen Unschärfe-Effekt */
   color: var(--text-color); /* Textfarbe für den Header */
+  --text-color: black;
 }
 
 [data-theme="light"] .nav-link {
@@ -567,7 +575,12 @@ footer {
 }
 
 .logo-image {
-  animation: logo-float 6s ease-in-out infinite;
+  height: 16rem; /* Einheitliche Größe */
+  width: auto;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.12)) brightness(0) invert(0);
+  transform: translateZ(0);
+  transform: perspective(1000px) rotateX(2deg) rotateY(2deg);
 }
 
 /* Responsive Anpassungen */
@@ -578,13 +591,12 @@ footer {
     width: 180px;
     height: auto;
   }
-
   .logo-image {
-    height: auto;
-    width: 100%;
+    height: 16rem;
+    width: auto;
     max-height: 9.5rem;
     min-width: 150px;
-    animation: none;
+    animation: none !important;
     transform: none !important;
     filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2)) brightness(0) invert(0);
   }
