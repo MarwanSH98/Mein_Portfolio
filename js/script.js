@@ -178,8 +178,9 @@ function initTypewriter() {
   const nameText = "Marwan Sabah";
   const words = [
     "Angehender Web- Software Entwickler",
+    "Agiler Software-Entwickler",
     "Coder",
-    "Tech-Liebhaber",
+    "Lifelong Learner in Tech",
     "Lernender",
   ];
 
