@@ -161,6 +161,11 @@ function validateForm(e) {
 
   // Formular absenden (hier würde normalerweise AJAX/Fetch stehen)
   contactForm.submit();
+
+  // Formular leeren
+  contactForm.reset();
+
+ 
 }
 
 // ========== TYPEWRITER EFFECT ==========
