@@ -1,3 +1,39 @@
+  tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            animation: {
+              float: "float 6s ease-in-out infinite",
+              "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              "spin-slow": "spin 8s linear infinite",
+              glow: "glow 2s ease-in-out infinite alternate",
+              "text-gradient": "text-gradient 4s linear infinite",
+              "border-pulse": "border-pulse 3s ease-in-out infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-20px)" },
+              },
+              glow: {
+                "0%": { "box-shadow": "0 0 5px rgba(67, 97, 238, 0.5)" },
+                "100%": { "box-shadow": "0 0 20px rgba(67, 97, 238, 0.8)" },
+              },
+              "text-gradient": {
+                "0%, 100%": { "background-position": "0% 50%" },
+                "50%": { "background-position": "100% 50%" },
+              },
+              "border-pulse": {
+                "0%, 100%": { "border-color": "rgba(67, 97, 238, 0.5)" },
+                "50%": { "border-color": "rgba(67, 97, 238, 0.9)" },
+              },
+            },
+          },
+        },
+      };
+       
+
+
 // ========== GLOBALE VARIABLEN ==========
 const darkModeToggle = document.getElementById("darkModeToggle");
 const darkModeToggleMobile = document.getElementById("darkModeToggleMobile");
@@ -175,14 +211,15 @@ function initTypewriter() {
 
   if (!nameElement || !descriptionElement) return;
 
-  const nameText = "Marwan Sabah";
-  const words = [
-    "Angehender Web- Software Entwickler",
-    "Agiler Software-Entwickler",
-    "Coder",
-    "Lifelong Learner in Tech",
-    "Lernender",
-  ];
+const nameText = "Marwan Sabah";
+const words = [
+  "Informatik-Masterstudent mit B.Sc.",
+  "Begeisterter Web- & Softwareentwickler",
+  "Motiviert & lernbereit",
+  "Bringt frische Ideen ins Team",
+  "Liebt Technik & sauberen Code",
+  "Denkt lösungsorientiert & kreativ",
+];
 
   let nameIndex = 0;
   let wordIndex = 0;

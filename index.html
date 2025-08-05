@@ -9,19 +9,21 @@
       content="Portfolio von Marwan Sabah - Frontend Entwickler mit Fokus auf moderne Webtechnologien"
     />
     <meta name="author" content="Marwan Sabah" />
-    <!-- Favicon (Standard für alle Browser) -->
+    <!-- Favicon -->
     <link rel="icon" href="./img/Logo.ico" type="image/x-icon" />
-
-    <!-- SVG-Version für moderne Browser -->
     <link rel="icon" href="./img/Logo.ico" type="image/svg+xml" />
-
-    <!-- Für Apple-Geräte (z. B. iOS) -->
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+
+    <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -29,93 +31,141 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <!-- Floating background elements -->
+    <div
+      class="floating-element bg-blue-500 w-64 h-64 top-20 left-10 animate-float"
+    ></div>
+    <div
+      class="floating-element bg-purple-500 w-80 h-80 bottom-20 right-10 animate-float animation-delay-2000"
+    ></div>
+    <div
+      class="floating-element bg-pink-500 w-96 h-96 top-1/3 right-1/4 animate-float animation-delay-3000"
+    ></div>
+
+    <!-- Particle background -->
+    <div id="particles-js"></div>
+
     <!-- Navigation -->
     <nav
-      class="fixed w-full z-50 bg-gray-800/80 backdrop-blur-md border-b border-gray-700/50"
+      class="fixed w-full z-50 bg-gray-800/80 backdrop-blur-md border-b border-gray-700/50 transition-all duration-300"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <div class="flex-shrink-0">
-            <a href="#home" class="logo-link group relative">
-              <!-- Hauptlogo -->
-              <img
-                src="./img/Logo.svg"
-                alt="Marwan Sabah - Web & Software Developer"
-                class="logo-image h-16 w-auto transition-all duration-500"
-              />
-
-              <!-- Hover-Element (nur sichtbar bei hover) -->
-              <div
-                class="logo-hover-effect absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-              ></div>
+            <a href="#home" class="logo-link group relative flex items-center">
+              <!-- Logo with animation -->
+              <div class="relative">
+                <img
+                  src="./img/Logo.svg"
+                  alt="Marwan Sabah - Web & Software Developer"
+                  class="logo-image h-12 w-auto transition-all duration-500 group-hover:rotate-6 group-hover:scale-110"
+                />
+                <div
+                  class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 group-hover:opacity-20 blur-md transition-opacity duration-300"
+                ></div>
+              </div>
+              <span class="ml-3 text-xl font-bold gradient-text"
+                >Marwan Sabah</span
+              >
             </a>
           </div>
+
           <div class="hidden md:block">
-            <div class="ml-10 flex items-center space-x-4">
+            <div class="ml-10 flex items-center space-x-6">
               <a
                 href="#home"
-                class="nav-link hover:text-blue-400 transition-colors"
-                >Home</a
+                class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-blue-400 transition-all duration-300 hover:bg-gray-700/50 relative group"
               >
+                Home
+                <span
+                  class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"
+                ></span>
+              </a>
               <a
                 href="#about"
-                class="nav-link hover:text-blue-400 transition-colors"
-                >Über mich</a
+                class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-blue-400 transition-all duration-300 hover:bg-gray-700/50 relative group"
               >
+                Über mich
+                <span
+                  class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"
+                ></span>
+              </a>
               <a
                 href="#skills"
-                class="nav-link hover:text-blue-400 transition-colors"
-                >Skills</a
+                class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-blue-400 transition-all duration-300 hover:bg-gray-700/50 relative group"
               >
-
+                Skills
+                <span
+                  class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"
+                ></span>
+              </a>
+              <a
+                href="#projects"
+                class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-blue-400 transition-all duration-300 hover:bg-gray-700/50 relative group"
+              >
+                Projekte
+                <span
+                  class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"
+                ></span>
+              </a>
               <a
                 href="#contact"
-                class="nav-link hover:text-blue-400 transition-colors"
-                >Kontakt</a
+                class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-blue-400 transition-all duration-300 hover:bg-gray-700/50 relative group"
               >
+                Kontakt
+                <span
+                  class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"
+                ></span>
+              </a>
               <button
                 id="darkModeToggle"
-                class="p-2 rounded-full hover:bg-gray-700 transition-colors"
+                class="p-2 rounded-full hover:bg-gray-700 transition-colors duration-300 transform hover:rotate-12"
               >
                 <i class="fas fa-moon text-yellow-300"></i>
               </button>
             </div>
           </div>
+
           <div class="md:hidden">
             <button
               id="mobileMenuButton"
-              class="p-2 rounded-md hover:bg-gray-700"
+              class="p-2 rounded-md hover:bg-gray-700 transition-colors duration-300"
             >
               <i class="fas fa-bars"></i>
             </button>
           </div>
         </div>
       </div>
+
       <!-- Mobile menu -->
       <div
         id="mobileMenu"
-        class="hidden md:hidden bg-gray-800/95 backdrop-blur-lg"
+        class="hidden md:hidden bg-gray-800/95 backdrop-blur-lg transition-all duration-300"
       >
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <a
             href="#home"
-            class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 transition-colors"
+            class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 transition-colors duration-300"
             >Home</a
           >
           <a
             href="#about"
-            class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 transition-colors"
+            class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 transition-colors duration-300"
             >Über mich</a
           >
           <a
             href="#skills"
-            class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 transition-colors"
+            class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 transition-colors duration-300"
             >Skills</a
           >
-
+          <a
+            href="#projects"
+            class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 transition-colors duration-300"
+            >Projekte</a
+          >
           <a
             href="#contact"
-            class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 transition-colors"
+            class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 transition-colors duration-300"
             >Kontakt</a
           >
           <div class="px-3 py-2">
@@ -127,11 +177,31 @@
         </div>
       </div>
     </nav>
-
     <!-- Hero Section -->
     <section
       id="home"
-      class="min-h-screen flex items-center justify-center relative overflow-hidden pt-16"
+      class="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 parallax"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+      "
+    >
+      <!-- Scroll down indicator -->
+      <div
+        class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce"
+      >
+        <a
+          href="#home"
+          class="text-gray-300 hover:text-white transition-colors duration-300"
+        >
+          <i class="fas fa-chevron-down text-2xl"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- Hero Section2 -->
+    <section
+      id="home"
+      class="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 parallax"
     >
       <div
         class="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-gray-900/80 z-0"
@@ -141,67 +211,101 @@
         <div
           class="flex flex-col md:flex-row items-center justify-between gap-12"
         >
-          <div class="md:w-1/2 space-y-6">
+          <div class="md:w-1/2 space-y-6 animate-left">
             <h1 class="text-4xl md:text-6xl font-bold leading-tight">
               Hallo, ich bin
-              <span
-                class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600"
-              >
+              <span class="gradient-text">
                 <span class="typing-name"></span>
               </span>
             </h1>
 
             <div class="typing-description">
-              <span class="typing"></span>
+              <span
+                class="typing text-2xl md:text-3xl font-medium text-gray-300"
+              ></span>
             </div>
-
-            <div class="text-2xl md:text-3xl font-medium text-gray-300">
-              <span id="typing" class="border-r-2 border-blue-500 pr-1"></span>
-            </div>
-
-            <p
-              class="max-w-2xl mx-auto text-black-800 dark:text-gray-200 text-justify text-lg leading-loose relative pl-6 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-gradient-to-b before:from-blue-500 before:to-purple-600"
-            >
-              <span class="font-semibold text-black-900 dark:text-white"
-                >Ich bin ein leidenschaftlicher Frontend-Entwickler</span
-              >
-              mit einem Bachelor-Abschluss in Informatik. Als Junior mit Fokus
-              auf Webentwicklung mit
-              <span class="font-medium text-blue-600 dark:text-blue-400"
-                >HTML, CSS</span
-              >
-              und
-              <span class="font-medium text-yellow-600 dark:text-yellow-400"
-                >JavaScript</span
-              >
-              sowie Softwareentwicklung mit
-              <span class="font-medium text-red-600 dark:text-red-400"
-                >Java</span
-              >
-              bringe ich frische Perspektiven und große Lernbereitschaft mit.
-              Besonders begeistert mich die Suche nach kreativen Lösungen und
-              die Möglichkeit, mich kontinuierlich weiterzuentwickeln.
-            </p>
 
             <div class="flex flex-wrap gap-4 pt-4">
-              <a href="CV/CV Marwan Sabah.pdf" download class="btn-primary">
+              <a
+                href="CV/CV Marwan Sabah.pdf"
+                download
+                class="btn-primary glow-effect px-6 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold transition-all duration-300 flex items-center justify-center gap-2"
+              >
                 <i class="fas fa-download mr-2"></i> Lebenslauf
               </a>
-              <a href="#contact" class="btn-secondary">
+              <a
+                href="#contact"
+                class="btn-secondary px-6 py-3 rounded-lg bg-gray-800/50 hover:bg-gray-700/70 border border-gray-700 text-white font-semibold transition-all duration-300 flex items-center justify-center gap-2"
+              >
                 <i class="fas fa-envelope mr-2"></i> Kontakt
               </a>
             </div>
+
+            <!-- Social links -->
+            <div class="flex space-x-4 pt-4">
+              <a
+                href="https://www.linkedin.com/in/marwan-sabah-a49b68340"
+                target="_blank"
+                class="social-icon w-10 h-10 rounded-full bg-gray-800/50 hover:bg-blue-600 flex items-center justify-center transition-all duration-300"
+              >
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/marwan_98.x/"
+                target="_blank"
+                class="social-icon w-10 h-10 rounded-full bg-gray-800/50 hover:bg-pink-600 flex items-center justify-center transition-all duration-300"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="https://snapchat.com/t/8XVWRj2z"
+                target="_blank"
+                class="social-icon w-10 h-10 rounded-full bg-gray-800/50 hover:bg-yellow-400 flex items-center justify-center transition-all duration-300"
+              >
+                <i class="fab fa-snapchat-ghost"></i>
+              </a>
+            </div>
           </div>
-          <div class="md:w-1/2 flex justify-center">
+
+          <div class="md:w-1/2 flex justify-center animate-right">
             <div class="relative">
-              <img
-                src="img/marwan.jpeg"
-                alt="Marwan Sabah"
-                class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-blue-500/30 shadow-xl glow-animation"
-              />
+              <div
+                class="relative overflow-hidden rounded-full border-4 border-blue-500/30 shadow-xl glow-animation"
+              >
+                <img
+                  src="img/marwan.jpeg"
+                  alt="Marwan Sabah"
+                  class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full transform transition-all duration-500 hover:scale-110"
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-full"
+                ></div>
+              </div>
               <div
                 class="absolute -inset-4 rounded-full border-2 border-blue-400/50 animate-spin-slow opacity-70"
               ></div>
+
+              <!-- Floating tech icons around the image -->
+              <div
+                class="absolute -top-6 -left-6 w-12 h-12 bg-gray-800/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg animate-float"
+              >
+                <i class="fab fa-html5 text-orange-500 text-xl"></i>
+              </div>
+              <div
+                class="absolute -top-6 -right-6 w-12 h-12 bg-gray-800/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-1000"
+              >
+                <i class="fab fa-css3-alt text-blue-500 text-xl"></i>
+              </div>
+              <div
+                class="absolute -bottom-6 -left-6 w-12 h-12 bg-gray-800/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-2000"
+              >
+                <i class="fab fa-js text-yellow-400 text-xl"></i>
+              </div>
+              <div
+                class="absolute -bottom-6 -right-6 w-12 h-12 bg-gray-800/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-1500"
+              >
+                <i class="fab fa-java text-red-500 text-xl"></i>
+              </div>
             </div>
           </div>
         </div>
@@ -209,123 +313,231 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-800/50 backdrop-blur-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4">
-            <span
-              class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600"
-              >Über</span
-            >
-            mich
+    <section
+      id="about"
+      class="py-24 bg-gray-900/80 backdrop-blur-lg relative overflow-hidden"
+    >
+      <!-- Animated background elements -->
+      <div
+        class="absolute -top-32 -left-32 w-64 h-64 rounded-full bg-blue-500/10 blur-3xl animate-pulse"
+      ></div>
+      <div
+        class="absolute -bottom-20 -right-20 w-72 h-72 rounded-full bg-purple-500/10 blur-3xl animate-pulse delay-300"
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-20 animate-fade-in">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            <span class="highlight-text">Über</span> mich
           </h2>
           <div
-            class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"
+            class="w-24 h-1.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mx-auto rounded-full animate-gradient-x"
           ></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div class="space-y-6">
-            <h3 class="text-2xl font-semibold">Meine Reise als Entwickler</h3>
-            <p
-              class="max-w-2xl mx-auto text-black-800 dark:text-gray-200 text-justify text-lg leading-loose relative pl-6 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-gradient-to-b before:from-blue-500 before:to-purple-600"
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div class="space-y-8 animate-slide-up">
+            <h3
+              class="text-3xl font-semibold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
             >
-              <span class="font-semibold text-black-900 dark:text-white"
-                >Ich bin ein begeisterter Bachelor-Absolvent</span
-              >
-              mit Fokus auf Web- und Softwareentwicklung. Meine ersten Projekte
-              habe ich mit
-              <span class="font-medium text-purple-600 dark:text-purple-400"
-                >WordPress</span
-              >
-              umgesetzt, später folgten eigene Webseiten mit
-              <span class="font-medium text-blue-600 dark:text-blue-400"
-                >HTML, CSS</span
-              >
-              und
-              <span class="font-medium text-yellow-600 dark:text-yellow-400"
-                >JavaScript</span
-              >. Neben Erfahrungen mit
-              <span class="font-medium text-red-600 dark:text-red-400"
-                >Java</span
-              >
-              und agilen Methoden wie
-              <span class="font-medium text-green-600 dark:text-green-400"
-                >Scrum</span
-              >
-              arbeite ich auch routiniert mit Tools wie
-              <span class="font-medium text-indigo-600 dark:text-indigo-400"
-                >Jira</span
-              >
-              und
-              <span class="font-medium text-teal-600 dark:text-teal-400"
-                >Confluence</span
-              >. Neue Technologien und spannende Herausforderungen motivieren
-              mich, ständig dazuzulernen, ob im Web- oder in der
-              Softwareentwicklung.
-            </p>
+              Meine Reise als Entwickler
+            </h3>
 
-            <div class="pt-4">
+            <div
+              class="relative pl-8 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-gradient-to-b before:from-blue-500 before:to-purple-600 before:rounded-full"
+            >
+              <p class="text-gray-300 text-lg leading-relaxed">
+                <span class="font-semibold text-white">
+                  Absolvent der Informatik (B.Sc.)
+                </span>
+                mit praktischem Fokus auf Web- und Softwareentwicklung und
+                aktuell im Masterstudium. Ich bringe fundierte Kenntnisse in
+                <span class="font-medium text-red-400">Java</span>,
+                <span class="font-medium text-yellow-400">JavaScript</span>,
+                <span class="font-medium text-blue-400">HTML/CSS</span>,
+                <span class="font-medium text-purple-400">WordPress</span>
+                sowie in relationalen Datenbanken wie
+                <span class="font-medium text-pink-400">PostgreSQL</span>
+                mit. Entwicklungserfahrung im agilen Umfeld, insbesondere mit
+                <span class="font-medium text-green-400">Scrum</span>,
+                <span class="font-medium text-indigo-400">Jira</span>
+                und
+                <span class="font-medium text-teal-400">Confluence</span>,
+                gehört ebenso zu meinem Profil wie die Umsetzung responsiver
+                Webanwendungen und UI/UX-orientierter Interfaces. Ich arbeite
+                strukturiert, lerne schnell und bin motiviert, innovative
+                Softwarelösungen aktiv mitzugestalten, sei es im Web oder in der
+                allgemeinen Softwareentwicklung.
+              </p>
+            </div>
+
+            <div class="pt-6">
               <a
                 href="#skills"
-                class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors"
+                class="group inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg shadow-lg hover:from-blue-500 hover:to-purple-500 transition-all duration-300 transform hover:-translate-y-1"
               >
-                Meine Skills <i class="fas fa-arrow-down ml-2"></i>
+                <span class="font-medium">Meine Skills</span>
+                <i
+                  class="fas fa-arrow-down ml-3 group-hover:animate-bounce transition-transform"
+                ></i>
               </a>
             </div>
           </div>
 
           <div
-            class="bg-gray-700/50 p-8 rounded-xl border border-gray-600/30 shadow-lg"
+            class="gradient-border bg-gray-800/60 p-8 rounded-xl backdrop-blur-sm animate-slide-up delay-100"
           >
-            <h3 class="text-xl font-semibold mb-6">
-              Persönliche Informationen
-            </h3>
-            <ul class="space-y-4">
-              <li class="flex items-start">
-                <div class="bg-blue-500/10 p-2 rounded-lg mr-4">
-                  <i class="fas fa-user text-blue-400"></i>
+            <div class="flex items-center mb-8">
+              <div
+                class="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg mr-4"
+              >
+                <i class="fas fa-user text-white text-xl"></i>
+              </div>
+              <h3
+                class="text-2xl font-semibold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
+              >
+                Persönliche Informationen
+              </h3>
+            </div>
+
+            <ul class="space-y-6">
+              <li class="flex items-start group">
+                <div
+                  class="bg-blue-500/20 p-3 rounded-lg mr-4 group-hover:bg-blue-500/30 transition-colors duration-300"
+                >
+                  <i class="fas fa-user text-blue-400 text-lg"></i>
                 </div>
                 <div>
-                  <span class="block text-gray-400 text-sm">Name</span>
-                  <span class="font-medium">Marwan Sabah</span>
+                  <span
+                    class="block text-gray-400 text-sm uppercase tracking-wider"
+                    >Name</span
+                  >
+                  <span class="font-medium text-lg">Marwan Sabah</span>
                 </div>
               </li>
-              <li class="flex items-start">
-                <div class="bg-purple-500/10 p-2 rounded-lg mr-4">
-                  <i class="fas fa-map-marker-alt text-purple-400"></i>
+
+              <li class="flex items-start group">
+                <div
+                  class="bg-purple-500/20 p-3 rounded-lg mr-4 group-hover:bg-purple-500/30 transition-colors duration-300"
+                >
+                  <i class="fas fa-map-marker-alt text-purple-400 text-lg"></i>
                 </div>
                 <div>
-                  <span class="block text-gray-400 text-sm">Standort</span>
-                  <span class="font-medium">Deutschland</span>
+                  <span
+                    class="block text-gray-400 text-sm uppercase tracking-wider"
+                    >Standort</span
+                  >
+                  <span class="font-medium text-lg"
+                    >Gelsenkirchen, Deutschland</span
+                  >
                 </div>
               </li>
-              <li class="flex items-start">
-                <div class="bg-green-500/10 p-2 rounded-lg mr-4">
-                  <i class="fas fa-language text-green-400"></i>
+
+              <li class="flex items-start group">
+                <div
+                  class="bg-green-500/20 p-3 rounded-lg mr-4 group-hover:bg-green-500/30 transition-colors duration-300"
+                >
+                  <i class="fas fa-language text-green-400 text-lg"></i>
                 </div>
                 <div>
-                  <span class="block text-gray-400 text-sm">Sprachen</span>
-                  <span class="font-medium"
+                  <span
+                    class="block text-gray-400 text-sm uppercase tracking-wider"
+                    >Sprachen</span
+                  >
+                  <span class="font-medium text-lg"
                     >Deutsch, Kurdisch, Arabisch, Englisch</span
                   >
                 </div>
               </li>
+
+            
             </ul>
+
+            <!-- Timeline -->
+            <div class="mt-8">
+              <h4 class="text-lg font-medium mb-4">Mein Werdegang</h4>
+              <div class="space-y-4">
+                <div class="flex items-start">
+                  <div class="bg-pink-500/10 p-2 rounded-full mr-4 mt-1">
+                    <div class="w-2 h-2 bg-pink-400 rounded-full"></div>
+                  </div>
+                  <div>
+                    <span class="block text-sm font-medium"
+                      >09/2025 - Heute</span
+                    >
+                    <span class="text-sm text-gray-400"
+                      >Masterstudium Informatik</span
+                    >
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="bg-blue-500/10 p-2 rounded-full mr-4 mt-1">
+                    <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                  </div>
+                  <div>
+                    <span class="block text-sm font-medium"
+                      >09/2020 - 03/2025</span
+                    >
+                    <span class="text-sm text-gray-400"
+                      >Bachelorstudium Informatik</span
+                    >
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="bg-purple-500/10 p-2 rounded-full mr-4 mt-1">
+                    <div class="w-2 h-2 bg-purple-400 rounded-full"></div>
+                  </div>
+                  <div>
+                    <span class="block text-sm font-medium"
+                      >09/2018 - 07/2020</span
+                    >
+                    <span class="text-sm text-gray-400"
+                      >Fachhochschulreife
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-gray-700/50">
+              <div class="flex space-x-4">
+                <a
+                  href="#"
+                  class="w-10 h-10 flex items-center justify-center bg-gray-700/50 hover:bg-blue-600/30 rounded-full transition-colors duration-300 text-blue-400 hover:text-white"
+                >
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+
+                <a
+                  href="#"
+                  class="w-10 h-10 flex items-center justify-center bg-gray-700/50 hover:bg-pink-500/30 rounded-full transition-colors duration-300 text-pink-400 hover:text-white"
+                >
+                  <i class="fab fa-instagram"></i>
+                  <a
+                    href="https://snapchat.com/t/8XVWRj2z"
+                    target="_blank"
+                    class="social-icon hover:bg-yellow-400"
+                  >
+                    <i class="fab fa-snapchat-ghost"></i>
+                  </a>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
+
     <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-gray-900/50 backdrop-blur-sm">
+    <section
+      id="projects"
+      class="py-20 bg-gray-900/50 backdrop-blur-sm animate-section"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <h2 class="text-3xl md:text-4xl font-bold mb-4">
             Meine
-            <span
-              class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600"
-              >Projekte</span
-            >
+            <span class="gradient-text">Projekte</span>
           </h2>
           <div
             class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"
@@ -335,19 +547,37 @@
             Webentwicklungsprojekte
           </p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <!-- Projekt 1: Dashboard Interface -->
           <div
-            class="bg-gray-800/50 rounded-xl border border-gray-700/50 shadow-lg overflow-hidden transition-transform hover:scale-[1.02]"
+            class="bg-gray-800/50 rounded-xl border border-gray-700/50 shadow-lg overflow-hidden transition-all duration-500 card-hover card-3d"
           >
             <div
-              class="h-48 bg-gradient-to-r from-blue-900/30 to-purple-900/30 flex items-center justify-center"
+              class="h-48 bg-gradient-to-r from-blue-900/30 to-purple-900/30 flex items-center justify-center relative overflow-hidden"
             >
               <img
                 src="img/dashboard.jpg"
                 alt="Dashboard Interface"
-                class="h-full w-full object-cover"
+                class="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
               />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent"
+              ></div>
+              <div class="absolute bottom-4 left-4">
+                <span
+                  class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs backdrop-blur-sm"
+                  >HTML5</span
+                >
+                <span
+                  class="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full text-xs backdrop-blur-sm"
+                  >CSS3</span
+                >
+                <span
+                  class="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-xs backdrop-blur-sm"
+                  >JavaScript</span
+                >
+              </div>
             </div>
             <div class="p-6">
               <h3 class="text-xl font-semibold mb-2">Dashboard Interface</h3>
@@ -355,31 +585,16 @@
                 Eine moderne Dashboard-Oberfläche mit responsivem Layout,
                 dynamischer Navigation und Bootstrap-Komponenten.
               </p>
-              <div class="flex flex-wrap gap-3">
-                <span
-                  class="px-3 py-1 bg-blue-500/10 text-blue-400 rounded-full text-xs"
-                  >HTML5</span
-                >
-                <span
-                  class="px-3 py-1 bg-purple-500/10 text-purple-400 rounded-full text-xs"
-                  >CSS3</span
-                >
-                <span
-                  class="px-3 py-1 bg-yellow-500/10 text-yellow-400 rounded-full text-xs"
-                  >JavaScript</span
-                >
-                <span
-                  class="px-3 py-1 bg-indigo-500/10 text-indigo-400 rounded-full text-xs"
-                  >Bootstrap</span
-                >
-              </div>
               <div class="mt-6">
                 <a
                   href="https://marwansh98.github.io/Dashboard-Interface/"
                   target="_blank"
-                  class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors"
+                  class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-300 group"
                 >
-                  Live Demo <i class="fas fa-external-link-alt ml-2"></i>
+                  Live Demo
+                  <i
+                    class="fas fa-external-link-alt ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                  ></i>
                 </a>
               </div>
             </div>
@@ -387,16 +602,33 @@
 
           <!-- Projekt 2: Responsive Demo -->
           <div
-            class="bg-gray-800/50 rounded-xl border border-gray-700/50 shadow-lg overflow-hidden transition-transform hover:scale-[1.02]"
+            class="bg-gray-800/50 rounded-xl border border-gray-700/50 shadow-lg overflow-hidden transition-all duration-500 card-hover card-3d"
           >
             <div
-              class="h-48 bg-gradient-to-r from-blue-900/30 to-purple-900/30 flex items-center justify-center"
+              class="h-48 bg-gradient-to-r from-blue-900/30 to-purple-900/30 flex items-center justify-center relative overflow-hidden"
             >
               <img
                 src="img/projekt.jpg"
                 alt="Responsive Demo Projekt"
-                class="h-full w-full object-cover"
+                class="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
               />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent"
+              ></div>
+              <div class="absolute bottom-4 left-4">
+                <span
+                  class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs backdrop-blur-sm"
+                  >HTML5</span
+                >
+                <span
+                  class="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full text-xs backdrop-blur-sm"
+                  >CSS3</span
+                >
+                <span
+                  class="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-xs backdrop-blur-sm"
+                  >JavaScript</span
+                >
+              </div>
             </div>
             <div class="p-6">
               <h3 class="text-xl font-semibold mb-2">Responsive Demo</h3>
@@ -404,28 +636,51 @@
                 Eine Demonstrationsseite, die responsive Designprinzipien für
                 verschiedene Bildschirmgrößen umsetzt.
               </p>
-              <div class="flex flex-wrap gap-3">
-                <span
-                  class="px-3 py-1 bg-blue-500/10 text-blue-400 rounded-full text-xs"
-                  >HTML5</span
-                >
-                <span
-                  class="px-3 py-1 bg-purple-500/10 text-purple-400 rounded-full text-xs"
-                  >CSS3</span
-                >
-                <span
-                  class="px-3 py-1 bg-yellow-500/10 text-yellow-400 rounded-full text-xs"
-                  >JavaScript</span
-                >
-              </div>
               <div class="mt-6">
                 <a
                   href="https://marwansh98.github.io/responsive-demo/"
                   target="_blank"
-                  class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors"
+                  class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-300 group"
                 >
-                  Live Demo <i class="fas fa-external-link-alt ml-2"></i>
+                  Live Demo
+                  <i
+                    class="fas fa-external-link-alt ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                  ></i>
                 </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coming Soon Project -->
+          <div
+            class="bg-gray-800/50 rounded-xl border border-gray-700/50 shadow-lg overflow-hidden transition-all duration-500 card-hover card-3d"
+          >
+            <div
+              class="h-48 bg-gradient-to-r from-blue-900/30 to-purple-900/30 flex items-center justify-center relative overflow-hidden"
+            >
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="text-center p-6">
+                  <i class="fas fa-code text-4xl text-gray-400 mb-4"></i>
+                  <h3 class="text-xl font-semibold text-white mb-2">
+                    Neues Projekt in Arbeit
+                  </h3>
+                  <p class="text-gray-300">Bald verfügbar</p>
+                </div>
+              </div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent"
+              ></div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">Coming Soon</h3>
+              <p class="text-gray-400 mb-4">
+                Ich arbeite derzeit an einem neuen spannenden Projekt. Schauen
+                Sie bald wieder vorbei!
+              </p>
+              <div class="mt-6">
+                <span class="inline-flex items-center text-gray-500">
+                  Bald verfügbar <i class="fas fa-hourglass-half ml-2"></i>
+                </span>
               </div>
             </div>
           </div>
@@ -782,15 +1037,12 @@
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-900">
+       <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900 animate-section">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <h2 class="text-3xl md:text-4xl font-bold mb-4">
-            <span
-              class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600"
-              >Kontakt</span
-            >
+            <span class="gradient-text">Kontakt</span>
             aufnehmen
           </h2>
           <div
@@ -804,38 +1056,44 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div
-            class="bg-gray-800/50 p-8 rounded-xl border border-gray-700/50 shadow-lg"
+            class="bg-gray-800/50 p-8 rounded-xl border border-gray-700/50 shadow-lg backdrop-blur-sm animate-left"
           >
             <h3 class="text-2xl font-semibold mb-6">Kontaktinformationen</h3>
             <ul class="space-y-6">
               <li class="flex items-start">
-                <div class="bg-blue-500/10 p-3 rounded-lg mr-4">
+                <div
+                  class="bg-blue-500/10 p-3 rounded-lg mr-4 animate-pulse-slow"
+                >
                   <i class="fas fa-envelope text-blue-400"></i>
                 </div>
                 <div>
                   <span class="block text-gray-400 text-sm">Email</span>
                   <a
                     href="mailto:marwan.sabah@outlook.de"
-                    class="font-medium hover:text-blue-400 transition-colors"
+                    class="font-medium hover:text-blue-400 transition-colors duration-300"
                     >marwan.sabah@outlook.de</a
                   >
                 </div>
               </li>
               <li class="flex items-start">
-                <div class="bg-purple-500/10 p-3 rounded-lg mr-4">
+                <div
+                  class="bg-purple-500/10 p-3 rounded-lg mr-4 animate-pulse-slow animation-delay-500"
+                >
                   <i class="fas fa-phone-alt text-purple-400"></i>
                 </div>
                 <div>
                   <span class="block text-gray-400 text-sm">Telefon</span>
                   <a
-                    href="tel:+49123456789"
-                    class="font-medium hover:text-purple-400 transition-colors"
+                    href="tel:+4917662558599"
+                    class="font-medium hover:text-purple-400 transition-colors duration-300"
                     >+49 176 625 585 99</a
                   >
                 </div>
               </li>
               <li class="flex items-start">
-                <div class="bg-green-500/10 p-3 rounded-lg mr-4">
+                <div
+                  class="bg-green-500/10 p-3 rounded-lg mr-4 animate-pulse-slow animation-delay-1000"
+                >
                   <i class="fas fa-map-marker-alt text-green-400"></i>
                 </div>
                 <div>
@@ -851,7 +1109,7 @@
                 <a
                   href="https://www.linkedin.com/in/marwan-sabah-a49b68340"
                   target="_blank"
-                  class="social-icon hover:bg-blue-600"
+                  class="social-icon w-12 h-12 rounded-full bg-gray-800/50 hover:bg-blue-600 flex items-center justify-center transition-all duration-300 transform hover:-translate-y-1"
                 >
                   <i class="fab fa-linkedin-in"></i>
                 </a>
@@ -859,24 +1117,31 @@
                 <a
                   href="https://www.instagram.com/marwan_98.x/"
                   target="_blank"
-                  class="social-icon hover:bg-pink-600"
+                  class="social-icon w-12 h-12 rounded-full bg-gray-800/50 hover:bg-pink-600 flex items-center justify-center transition-all duration-300 transform hover:-translate-y-1"
                 >
                   <i class="fab fa-instagram"></i>
                 </a>
                 <a
                   href="https://snapchat.com/t/8XVWRj2z"
                   target="_blank"
-                  class="social-icon hover:bg-yellow-400"
+                  class="social-icon w-12 h-12 rounded-full bg-gray-800/50 hover:bg-yellow-400 flex items-center justify-center transition-all duration-300 transform hover:-translate-y-1"
                 >
                   <i class="fab fa-snapchat-ghost"></i>
+                </a>
+                <a
+                  href="https://github.com/marwansh98"
+                  target="_blank"
+                  class="social-icon w-12 h-12 rounded-full bg-gray-800/50 hover:bg-gray-700 flex items-center justify-center transition-all duration-300 transform hover:-translate-y-1"
+                >
+                  <i class="fab fa-github"></i>
                 </a>
               </div>
             </div>
           </div>
 
-          <!-- Neuer Kontaktformular-Block -->
+          <!-- Contact Form -->
           <div
-            class="bg-gray-800/50 p-8 rounded-xl border border-gray-700/50 shadow-xl"
+            class="bg-gray-800/50 p-8 rounded-xl border border-gray-700/50 shadow-xl backdrop-blur-sm animate-right"
           >
             <form
               id="contactForm"
@@ -895,7 +1160,7 @@
                   name="name"
                   required
                   placeholder="Ihr Name"
-                  class="bg-gray-900 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  class="bg-gray-900 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
                 />
               </div>
               <div class="flex flex-col">
@@ -908,7 +1173,7 @@
                   name="email"
                   required
                   placeholder="Ihre Email-Adresse"
-                  class="bg-gray-900 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  class="bg-gray-900 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
                 />
               </div>
               <div class="flex flex-col">
@@ -920,7 +1185,7 @@
                   id="subject"
                   name="subject"
                   placeholder="Betreff"
-                  class="bg-gray-900 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  class="bg-gray-900 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
                 />
               </div>
               <div class="flex flex-col">
@@ -933,13 +1198,13 @@
                   rows="5"
                   required
                   placeholder="Ihre Nachricht"
-                  class="bg-gray-900 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                  class="bg-gray-900 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none transition-all duration-300"
                 ></textarea>
               </div>
               <div>
                 <button
                   type="submit"
-                  class="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
+                  class="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 glow-effect"
                 >
                   <i class="fas fa-paper-plane"></i>
                   Nachricht senden
@@ -951,37 +1216,44 @@
       </div>
     </section>
 
-    <a href="#top" class="scroll-to-top"> ↑ </a>
+    <a
+      href="#top"
+      class="scroll-to-top fixed right-6 bottom-6 w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 invisible hover:from-blue-600 hover:to-purple-700 hover:shadow-xl"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </a>
 
-    <!-- Footer -->
+     <!-- Footer -->
     <footer class="bg-gray-900 border-t border-gray-800 py-10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
           class="flex flex-col md:flex-row justify-between items-center gap-6"
         >
-          <span
-            class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent"
-          >
-            Marwan Sabah
-          </span>
+          <span class="text-2xl font-bold gradient-text"> Marwan Sabah </span>
           <nav class="flex flex-wrap justify-center gap-4 text-sm font-medium">
-            <a href="#home" class="text-gray-400 hover:text-blue-400 transition"
+            <a
+              href="#home"
+              class="text-gray-400 hover:text-blue-400 transition-colors duration-300"
               >Home</a
             >
             <a
               href="#about"
-              class="text-gray-400 hover:text-blue-400 transition"
+              class="text-gray-400 hover:text-blue-400 transition-colors duration-300"
               >Über mich</a
             >
             <a
               href="#skills"
-              class="text-gray-400 hover:text-blue-400 transition"
+              class="text-gray-400 hover:text-blue-400 transition-colors duration-300"
               >Skills</a
             >
-
+            <a
+              href="#projects"
+              class="text-gray-400 hover:text-blue-400 transition-colors duration-300"
+              >Projekte</a
+            >
             <a
               href="#contact"
-              class="text-gray-400 hover:text-blue-400 transition"
+              class="text-gray-400 hover:text-blue-400 transition-colors duration-300"
               >Kontakt</a
             >
           </nav>
@@ -999,7 +1271,7 @@
             <a
               href="https://www.linkedin.com/in/marwan-sabah-a49b68340"
               target="_blank"
-              class="text-gray-500 hover:text-blue-500 transition"
+              class="text-gray-500 hover:text-blue-500 transition-colors duration-300"
             >
               <i class="fab fa-linkedin-in"></i>
             </a>
@@ -1007,14 +1279,14 @@
             <a
               href="https://www.instagram.com/marwan_98.x/"
               target="_blank"
-              class="text-gray-500 hover:text-pink-500 transition"
+              class="text-gray-500 hover:text-pink-500 transition-colors duration-300"
             >
               <i class="fab fa-instagram"></i>
             </a>
             <a
               href="https://snapchat.com/t/8XVWRj2z"
               target="_blank"
-              class="text-gray-500 hover:text-yellow-400 transition"
+              class="text-gray-500 hover:text-yellow-400 transition-colors duration-300"
             >
               <i class="fab fa-snapchat-ghost"></i>
             </a>
@@ -1022,6 +1294,8 @@
         </div>
       </div>
     </footer>
+       <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
       document.getElementById("current-year").textContent =
         new Date().getFullYear();
