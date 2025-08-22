@@ -1,162 +1,49 @@
-  tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            animation: {
-              float: "float 6s ease-in-out infinite",
-              "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-              "spin-slow": "spin 8s linear infinite",
-              glow: "glow 2s ease-in-out infinite alternate",
-              "text-gradient": "text-gradient 4s linear infinite",
-              "border-pulse": "border-pulse 3s ease-in-out infinite",
-            },
-            keyframes: {
-              float: {
-                "0%, 100%": { transform: "translateY(0)" },
-                "50%": { transform: "translateY(-20px)" },
-              },
-              glow: {
-                "0%": { "box-shadow": "0 0 5px rgba(67, 97, 238, 0.5)" },
-                "100%": { "box-shadow": "0 0 20px rgba(67, 97, 238, 0.8)" },
-              },
-              "text-gradient": {
-                "0%, 100%": { "background-position": "0% 50%" },
-                "50%": { "background-position": "100% 50%" },
-              },
-              "border-pulse": {
-                "0%, 100%": { "border-color": "rgba(67, 97, 238, 0.5)" },
-                "50%": { "border-color": "rgba(67, 97, 238, 0.9)" },
-              },
-            },
-          },
-        },
-      };
-       
-
-
 // ========== GLOBALE VARIABLEN ==========
-const darkModeToggle = document.getElementById("darkModeToggle");
-const darkModeToggleMobile = document.getElementById("darkModeToggleMobile");
-const mobileMenuButton = document.getElementById("mobileMenuButton");
-const mobileMenu = document.getElementById("mobileMenu");
-const scrollToTopBtn = document.querySelector(".scroll-to-top");
+const themeToggle = document.getElementById("theme-toggle");
+const themeToggleMobile = document.getElementById("theme-toggle-mobile");
+const mobileMenuButton = document.getElementById("mobile-menu-button");
+const mobileMenu = document.getElementById("mobile-menu");
+const hamburger = document.querySelector(".hamburger");
+const scrollTopButton = document.getElementById("scroll-top");
 const contactForm = document.getElementById("contactForm");
-const navLinks = document.querySelectorAll(".nav-link, #mobileMenu a");
+const navLinks = document.querySelectorAll('a[href^="#"]');
 
-// ========== DARK MODE FUNKTIONALITÄT ==========
+// ========== DARK MODE TOGGLE ==========
 function toggleDarkMode() {
-  const html = document.documentElement;
-  const isDark = html.getAttribute("data-theme") === "dark";
-
-  // Theme umschalten
-  html.setAttribute("data-theme", isDark ? "light" : "dark");
-
-  // Icon aktualisieren
-  const icons = document.querySelectorAll(
-    "#darkModeToggle i, #darkModeToggleMobile i"
-  );
-  icons.forEach((icon) => {
-    icon.className = isDark
-      ? "fas fa-sun text-yellow-300"
-      : "fas fa-moon text-yellow-300";
-  });
-
-  // Text aktualisieren (nur mobile)
-  const darkModeText = document.querySelector("#darkModeToggleMobile span");
-  if (darkModeText) {
-    darkModeText.textContent = isDark ? "Light Mode" : "Dark Mode";
+  if (document.documentElement.classList.contains("dark")) {
+    document.documentElement.classList.remove("dark");
+    localStorage.setItem("color-theme", "light");
+  } else {
+    document.documentElement.classList.add("dark");
+    localStorage.setItem("color-theme", "dark");
   }
-
-  // Status speichern
-  localStorage.setItem("theme", isDark ? "light" : "dark");
 }
 
 function loadThemePreference() {
-  const savedTheme =
-    localStorage.getItem("theme") ||
-    (window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light");
-
-  document.documentElement.setAttribute("data-theme", savedTheme);
-
-  // Icons entsprechend setzen
-  const isDark = savedTheme === "dark";
-  const icons = document.querySelectorAll(
-    "#darkModeToggle i, #darkModeToggleMobile i"
-  );
-  icons.forEach((icon) => {
-    icon.className = isDark
-      ? "fas fa-moon text-yellow-300"
-      : "fas fa-sun text-yellow-300";
-  });
-
-  // Text aktualisieren (nur mobile)
-  const darkModeText = document.querySelector("#darkModeToggleMobile span");
-  if (darkModeText) {
-    darkModeText.textContent = isDark ? "Dark Mode" : "Light Mode";
+  if (
+    localStorage.getItem("color-theme") === "dark" ||
+    (!("color-theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
   }
 }
 
 // ========== MOBILE MENU TOGGLE ==========
 function toggleMobileMenu() {
   mobileMenu.classList.toggle("hidden");
-  mobileMenu.classList.toggle("show");
-
-  // Icon ändern (Hamburger zu X und umgekehrt)
-  const icon = mobileMenuButton.querySelector("i");
-  if (mobileMenu.classList.contains("show")) {
-    icon.className = "fas fa-times";
-  } else {
-    icon.className = "fas fa-bars";
-  }
-}
-
-// ========== SMOOTH SCROLLING ==========
-function smoothScroll(e) {
-  e.preventDefault();
-  const targetId = this.getAttribute("href");
-  const targetElement = document.querySelector(targetId);
-
-  // Mobile Menu schließen
-  if (mobileMenu.classList.contains("show")) {
-    toggleMobileMenu();
-  }
-
-  // Zum Ziel scrollen
-  targetElement.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  });
-}
-
-// ========== SCROLL-TO-TOP BUTTON ==========
-function handleScroll() {
-  // Button anzeigen/verstecken
-  if (window.scrollY > 300) {
-    scrollToTopBtn.classList.add("show");
-  } else {
-    scrollToTopBtn.classList.remove("show");
-  }
-
-  // Aktiven Nav-Link hervorheben
-  highlightActiveSection();
-}
-
-function scrollToTop(e) {
-  e.preventDefault();
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
+  hamburger.classList.toggle("open");
 }
 
 // ========== AKTIVE SECTION HERVORHEBEN ==========
 function highlightActiveSection() {
-  const scrollPosition = window.scrollY;
+  const scrollPosition = window.scrollY + 80; // Berücksichtige Navbar-Höhe (80px)
+  let activeSectionFound = false;
 
   document.querySelectorAll("section").forEach((section) => {
-    const sectionTop = section.offsetTop - 100;
+    const sectionTop = section.offsetTop - 100; // Puffer für bessere Sichtbarkeit
     const sectionHeight = section.offsetHeight;
     const sectionId = section.getAttribute("id");
 
@@ -168,10 +55,16 @@ function highlightActiveSection() {
         link.classList.remove("active");
         if (link.getAttribute("href") === `#${sectionId}`) {
           link.classList.add("active");
+          activeSectionFound = true;
         }
       });
     }
   });
+
+  // Entferne active-Klasse, wenn keine Sektion aktiv ist
+  if (!activeSectionFound) {
+    navLinks.forEach((link) => link.classList.remove("active"));
+  }
 }
 
 // ========== FORMULAR VALIDIERUNG ==========
@@ -195,90 +88,258 @@ function validateForm(e) {
     return;
   }
 
-  // Formular absenden (hier würde normalerweise AJAX/Fetch stehen)
+  // Formular absenden
   contactForm.submit();
 
   // Formular leeren
   contactForm.reset();
+}
 
- 
+// ========== SCROLL TO TOP ==========
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}
+
+function handleScroll() {
+  if (window.pageYOffset > 300) {
+    scrollTopButton.classList.remove("opacity-0", "invisible");
+    scrollTopButton.classList.add("opacity-100", "visible");
+  } else {
+    scrollTopButton.classList.remove("opacity-100", "visible");
+    scrollTopButton.classList.add("opacity-0", "invisible");
+  }
+}
+
+// ========== SMOOTH SCROLLING ==========
+function smoothScroll(e) {
+  e.preventDefault();
+
+  const targetId = this.getAttribute("href");
+  if (targetId === "#") return;
+
+  const targetElement = document.querySelector(targetId);
+  if (targetElement) {
+    window.scrollTo({
+      top: targetElement.offsetTop - 80,
+      behavior: "smooth",
+    });
+  }
+
+  // Schließe Mobile Menu nach Klick auf Link
+  if (!mobileMenu.classList.contains("hidden")) {
+    mobileMenu.classList.add("hidden");
+    hamburger.classList.remove("open");
+  }
+}
+
+// ========== NAVBAR BACKGROUND CHANGE ==========
+function handleNavbarScroll() {
+  const navbar = document.getElementById("navbar");
+  if (window.pageYOffset > 50) {
+    navbar.classList.add("shadow-md");
+    navbar.classList.remove("bg-white/80", "dark:bg-dark-800/80");
+    navbar.classList.add("bg-white", "dark:bg-dark-800");
+  } else {
+    navbar.classList.remove("shadow-md");
+    navbar.classList.remove("bg-white", "dark:bg-dark-800");
+    navbar.classList.add("bg-white/80", "dark:bg-dark-800/80");
+  }
 }
 
 // ========== TYPEWRITER EFFECT ==========
 function initTypewriter() {
-  const nameElement = document.querySelector(".typing-name");
-  const descriptionElement = document.querySelector(".typing");
-
-  if (!nameElement || !descriptionElement) return;
-
-const nameText = "Marwan Sabah";
-const words = [
-  "Informatik-Masterstudent mit B.Sc.",
-  "Begeisterter Web- & Softwareentwickler",
-  "Motiviert & lernbereit",
-  "Bringt frische Ideen ins Team",
-  "Liebt Technik & sauberen Code",
-  "Denkt lösungsorientiert & kreativ",
-];
-
-  let nameIndex = 0;
-  let wordIndex = 0;
+  const typingElement = document.querySelector(".typing");
+  const professions = [
+    "Informatik-Masterstudent mit B.Sc.",
+    "Begeisterter Web- & Softwareentwickler",
+    "Motiviert & lernbereit",
+    "Bringt frische Ideen ins Team",
+    "Liebt Technik & sauberen Code",
+    "Denkt lösungsorientiert & kreativ",
+  ];
+  let professionIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
+  let isEnd = false;
 
-  function typeName() {
-    if (nameIndex < nameText.length) {
-      nameElement.textContent += nameText.charAt(nameIndex);
-      nameIndex++;
-      setTimeout(typeName, 150);
-    } else {
-      typeDescription();
-    }
-  }
-
-  function typeDescription() {
-    const currentWord = words[wordIndex];
+  function type() {
+    const currentProfession = professions[professionIndex];
 
     if (isDeleting) {
-      descriptionElement.textContent = currentWord.substring(0, charIndex - 1);
+      typingElement.textContent = currentProfession.substring(0, charIndex - 1);
       charIndex--;
     } else {
-      descriptionElement.textContent = currentWord.substring(0, charIndex + 1);
+      typingElement.textContent = currentProfession.substring(0, charIndex + 1);
       charIndex++;
     }
 
-    if (!isDeleting && charIndex === currentWord.length) {
+    if (!isDeleting && charIndex === currentProfession.length) {
+      isEnd = true;
       isDeleting = true;
-      setTimeout(typeDescription, 1000);
+      setTimeout(type, 2000);
     } else if (isDeleting && charIndex === 0) {
       isDeleting = false;
-      wordIndex = (wordIndex + 1) % words.length;
-      setTimeout(typeDescription, 500);
+      professionIndex++;
+      if (professionIndex === professions.length) professionIndex = 0;
+      setTimeout(type, 500);
     } else {
-      setTimeout(typeDescription, isDeleting ? 50 : 150);
+      const typingSpeed = isDeleting ? 100 : 150;
+      const randomSpeed = Math.random() * 100;
+      setTimeout(type, isEnd ? typingSpeed : typingSpeed + randomSpeed);
     }
   }
 
-  typeName();
+  setTimeout(type, 1500);
 }
 
-// ========== SCROLL ANIMATIONEN ==========
+// ========== SCROLL ANIMATIONS ==========
 function initScrollAnimations() {
-  const observerOptions = {
-    threshold: 0.1,
-  };
+  const sections = document.querySelectorAll(".section-hidden");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("section-show");
+          // Trigger progress bar animation for skills section
+          if (entry.target.id === "skills") {
+            initSkillProgressBars();
+          }
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("animate-fadeIn");
+  sections.forEach((section) => observer.observe(section));
+}
+
+// ========== SKILL PROGRESS BARS ==========
+function initSkillProgressBars() {
+  const progressBars = document.querySelectorAll(".progress-bar");
+  progressBars.forEach((bar, index) => {
+    bar.style.width = "0"; // Zurücksetzen für Animation
+    setTimeout(() => {
+      const progressWidth = bar.getAttribute("style").match(/--progress-width:\s*(\d+%)/)[1];
+      bar.style.width = progressWidth;
+    }, 100 * index); // Gestaffelte Animation für jeden Balken
+  });
+}
+
+// ========== PARALLAX EFFECT ==========
+function initParallaxEffect() {
+  const parallaxElements = document.querySelectorAll(".parallax");
+  if (!parallaxElements.length) {
+    console.warn("Keine Parallax-Elemente gefunden.");
+    return;
+  }
+
+  window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
+    parallaxElements.forEach((element) => {
+      const speed = parseFloat(element.getAttribute("data-parallax-speed") || 0.5);
+      const yPos = -(scrollY * speed);
+      element.style.backgroundPositionY = `${yPos}px`;
+    });
+  });
+}
+
+// ========== INTERACTIVE PROJECT CARDS ==========
+function initProjectCardInteractions() {
+  const projectCards = document.querySelectorAll(".project-card");
+  projectCards.forEach((card) => {
+    card.addEventListener("mouseenter", () => {
+      card.classList.add("card-hover");
+      const overlay = card.querySelector(".overlay");
+      if (overlay) {
+        overlay.style.opacity = "1";
       }
     });
-  }, observerOptions);
-
-  document.querySelectorAll("section").forEach((section) => {
-    observer.observe(section);
+    card.addEventListener("mouseleave", () => {
+      card.classList.remove("card-hover");
+      const overlay = card.querySelector(".overlay");
+      if (overlay) {
+        overlay.style.opacity = "0";
+      }
+    });
   });
+}
+
+// ========== PARTICLES ANIMATION ==========
+function initParticles() {
+  if (window.particlesJS) {
+    particlesJS("particles-js", {
+      particles: {
+        number: {
+          value: 80,
+          density: {
+            enable: true,
+            value_area: 800,
+          },
+        },
+        color: {
+          value: document.documentElement.classList.contains("dark") ? "#ffffff" : "#4361ee",
+        },
+        shape: {
+          type: "circle",
+          stroke: { width: 0 },
+        },
+        opacity: {
+          value: 0.5,
+          random: true,
+        },
+        size: {
+          value: 3,
+          random: true,
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: document.documentElement.classList.contains("dark") ? "#ffffff" : "#4361ee",
+          opacity: 0.4,
+          width: 1,
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          random: false,
+          straight: false,
+          out_mode: "out",
+          bounce: false,
+        },
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" },
+          resize: true,
+        },
+        modes: {
+          repulse: { distance: 100, duration: 0.4 },
+          push: { particles_nb: 4 },
+        },
+      },
+      retina_detect: true,
+    });
+
+    // Update particle colors when theme changes
+    themeToggle?.addEventListener("click", updateParticleColors);
+    themeToggleMobile?.addEventListener("click", updateParticleColors);
+  }
+}
+
+function updateParticleColors() {
+  const isDark = document.documentElement.classList.contains("dark");
+  if (window.pJSDom && window.pJSDom[0]) {
+    const particles = window.pJSDom[0].pJS.particles;
+    particles.color.value = isDark ? "#ffffff" : "#4361ee";
+    particles.line_linked.color = isDark ? "#ffffff" : "#4361ee";
+    window.pJSDom[0].pJS.fn.particlesRefresh();
+  }
 }
 
 // ========== EVENT LISTENER ==========
@@ -287,13 +348,11 @@ document.addEventListener("DOMContentLoaded", () => {
   loadThemePreference();
 
   // Dark Mode Toggle
-  if (darkModeToggle) darkModeToggle.addEventListener("click", toggleDarkMode);
-  if (darkModeToggleMobile)
-    darkModeToggleMobile.addEventListener("click", toggleDarkMode);
+  if (themeToggle) themeToggle.addEventListener("click", toggleDarkMode);
+  if (themeToggleMobile) themeToggleMobile.addEventListener("click", toggleDarkMode);
 
   // Mobile Menu
-  if (mobileMenuButton)
-    mobileMenuButton.addEventListener("click", toggleMobileMenu);
+  if (mobileMenuButton) mobileMenuButton.addEventListener("click", toggleMobileMenu);
 
   // Smooth Scrolling
   navLinks.forEach((link) => {
@@ -301,10 +360,16 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Scroll to Top
-  if (scrollToTopBtn) {
-    scrollToTopBtn.addEventListener("click", scrollToTop);
+  if (scrollTopButton) {
+    scrollTopButton.addEventListener("click", scrollToTop);
     window.addEventListener("scroll", handleScroll);
   }
+
+  // Navbar Scroll
+  window.addEventListener("scroll", handleNavbarScroll);
+
+  // Highlight Active Section
+  window.addEventListener("scroll", highlightActiveSection);
 
   // Form Validation
   if (contactForm) {
@@ -316,4 +381,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Scroll Animations
   initScrollAnimations();
+
+  // Skill Progress Bars
+  initSkillProgressBars();
+
+  // Parallax Effect
+  initParallaxEffect();
+
+  // Project Card Interactions
+  initProjectCardInteractions();
+
+  // Particles Animation
+  initParticles();
+
+  // Set current year in footer
+  document.getElementById("year").textContent = new Date().getFullYear();
 });

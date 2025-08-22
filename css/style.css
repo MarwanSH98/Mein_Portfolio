@@ -367,9 +367,10 @@ footer {
 }
 
 /* ===== AKTIVE NAV-LINKS ===== */
-.nav-link.active {
-  color: #3b82f6;
+.active {
+  color: #0ea5e9;
   font-weight: 600;
+  border-bottom: 2px solid #0ea5e9;
 }
 
 /* ===== MOBILE MENU ===== */
@@ -862,4 +863,224 @@ footer {
 
 .glow-effect:hover {
   box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+}
+/* Progress bar animation */
+@keyframes progress-animation {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--progress-width);
+  }
+}
+.progress-bar {
+  animation: progress-animation 1.5s ease-in-out forwards;
+}
+
+/* Timeline */
+.timeline-item {
+  position: relative;
+  padding-left: 3rem;
+  border-left: 2px solid #334155;
+}
+.timeline-item:last-child {
+  border-left: 2px solid transparent;
+}
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #38bdf8;
+}
+
+/* Section animation */
+.section-hidden {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s;
+}
+.section-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Typing animation */
+.typing {
+  position: relative;
+}
+.typing::after {
+  content: "|";
+  position: absolute;
+  right: -5px;
+  animation: blink 1s infinite step-end;
+}
+@keyframes blink {
+  from,
+  to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Progress bar animation */
+@keyframes progress-animation {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--progress-width);
+  }
+}
+.progress-bar {
+  animation: progress-animation 1.5s ease-in-out forwards;
+}
+
+/* Card hover effect */
+.project-card {
+  transition: all 0.3s ease;
+}
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.project-card .overlay {
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.project-card:hover .overlay {
+  opacity: 1;
+}
+
+/* Timeline */
+.timeline-item {
+  position: relative;
+  padding-left: 3rem;
+  border-left: 2px solid #334155;
+}
+.timeline-item:last-child {
+  border-left: 2px solid transparent;
+}
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #38bdf8;
+}
+
+/* Section animation */
+.section-hidden {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s;
+}
+.section-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hamburger menu */
+.hamburger {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  transition: all 0.25s;
+  position: relative;
+}
+.hamburger-top,
+.hamburger-middle,
+.hamburger-bottom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  transform: rotate(0);
+  transition: all 0.5s;
+}
+.hamburger-middle {
+  transform: translateY(7px);
+}
+.hamburger-bottom {
+  transform: translateY(14px);
+}
+.open {
+  transform: rotate(90deg);
+  transform: translateY(0px);
+}
+.open .hamburger-top {
+  transform: rotate(45deg) translateY(6px) translate(6px);
+}
+.open .hamburger-middle {
+  display: none;
+}
+open .hamburger-bottom {
+  transform: rotate(-45deg) translateY(6px) translate(-6px);
+}
+/* === Progress Bar Animation === */
+.progress-bar {
+  width: 0;
+  transition: width 1.5s ease-in-out;
+}
+
+/* === Parallax Effect === */
+.parallax {
+  background-attachment: fixed; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* === Project Card Hover Effects === */
+.project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover,
+.project-card:focus-within {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.project-card .overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.project-card:hover .overlay,
+.project-card:focus-within .overlay {
+  opacity: 1;
+}
+
+/* === Particles Container === */
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
 }
