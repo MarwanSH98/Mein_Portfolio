@@ -10,6 +10,12 @@
   --border-radius: 16px;
   --glow-accent: 0 0 15px #f72585aa;
 }
+.hero {
+  height: 100vh; /* volle Höhe des Viewports */
+  background-image: url('…');
+  background-size: cover;
+  background-position: center;
+}
 
 body {
   font-family: "Inter", sans-serif;
