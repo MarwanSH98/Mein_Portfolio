@@ -12,7 +12,7 @@
 }
 .hero {
   height: 100vh; /* volle Höhe des Viewports */
-  background-image: url('…');
+  background-image: url("…");
   background-size: cover;
   background-position: center;
 }
@@ -46,6 +46,7 @@ nav {
 #home {
   min-height: 100vh;
   display: flex;
+  background-color: var(--bg-color); /* Fallback */
   align-items: center;
   justify-content: center;
   position: relative;
@@ -827,18 +828,20 @@ footer {
   animation: border-pulse 3s ease-in-out infinite;
 }
 
-/* Responsive adjustments */
+/* Override for mobile devices */
 @media (max-width: 768px) {
   .parallax {
-    background-attachment: scroll;
+    background-attachment: scroll !important;
+    background-size: cover !important;
+    background-position: center !important;
   }
-
-  .floating-element {
-    display: none;
+  #home.parallax {
+    background-image: url("img/hero-bild.jpeg") !important; /* Ensure image is applied */
   }
-}
-.gradient-border {
-  position: relative;
+  /* Optional: Disable particles on mobile if they cause issues */
+  #particles-js {
+    opacity: 0.5; /* Reduce opacity to avoid obscuring background */
+  }
 }
 
 .gradient-border::before {
@@ -1056,7 +1059,7 @@ open .hamburger-bottom {
 
 /* === Parallax Effect === */
 .parallax {
-  background-attachment: fixed; 
+  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1090,4 +1093,3 @@ open .hamburger-bottom {
   left: 0;
   z-index: 0;
 }
-
