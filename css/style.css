@@ -712,11 +712,25 @@ footer {
   transition: width 1.5s ease-out;
 }
 
+/* Parallax Effect */
 .parallax {
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+/* Override für Mobilgeräte */
+@media (max-width: 768px) {
+  #hero.parallax {
+    background-attachment: scroll !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-image: url("img/hero-bild.jpeg") !important;
+  }
+  #particles-js {
+    opacity: 0.3; /* Reduzierte Opazität, um das Hintergrundbild sichtbar zu machen */
+  }
 }
 
 /* Dark mode specific styles */
@@ -828,21 +842,7 @@ footer {
   animation: border-pulse 3s ease-in-out infinite;
 }
 
-/* Override for mobile devices */
-@media (max-width: 768px) {
-  .parallax {
-    background-attachment: scroll !important;
-    background-size: cover !important;
-    background-position: center !important;
-  }
-  #home.parallax {
-    background-image: url("img/hero-bild.jpeg") !important; /* Ensure image is applied */
-  }
-  /* Optional: Disable particles on mobile if they cause issues */
-  #particles-js {
-    opacity: 0.5; /* Reduce opacity to avoid obscuring background */
-  }
-}
+
 
 .gradient-border::before {
   content: "";
@@ -1057,13 +1057,6 @@ open .hamburger-bottom {
   transition: width 1.5s ease-in-out;
 }
 
-/* === Parallax Effect === */
-.parallax {
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 
 /* === Project Card Hover Effects === */
 .project-card {
