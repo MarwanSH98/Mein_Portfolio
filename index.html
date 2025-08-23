@@ -233,6 +233,14 @@
         background-repeat: no-repeat;
       "
     >
+      <!-- Fallback-Bild für Mobile (versteckt auf Desktop) -->
+      <img
+        src="img/hero-bild.jpeg"
+        alt="Hero Background"
+        class="absolute inset-0 w-full h-full object-cover md:hidden"
+        loading="eager"
+      />
+
       <div id="particles-js" class="absolute inset-0 z-0"></div>
       <!-- Scroll down indicator -->
       <div

@@ -11,8 +11,7 @@
   --glow-accent: 0 0 15px #f72585aa;
 }
 .hero {
-  height: 100vh; /* volle Höhe des Viewports */
-  background-image: url("…");
+height: 100vh;
   background-size: cover;
   background-position: center;
 }
@@ -720,16 +719,15 @@ footer {
   background-size: cover;
 }
 
-/* Override für Mobilgeräte */
+/* Media Query für Mobile: Deaktiviere Parallax komplett */
 @media (max-width: 768px) {
   #hero.parallax {
-    background-attachment: scroll !important;
-    background-size: cover !important;
-    background-position: center !important;
-    background-image: url("..img/hero-bild.jpeg") !important;
+    background-attachment: scroll !important; /* Fallback, falls benötigt */
+    background-image: none !important; /* Verstecke das Background-Image, da <img> übernimmt */
   }
+  
   #particles-js {
-    opacity: 0.3; /* Reduzierte Opazität, um das Hintergrundbild sichtbar zu machen */
+    opacity: 0.3; /* Deine bestehende Regel – reduziert Überdeckung */
   }
 }
 
