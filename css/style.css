@@ -726,7 +726,7 @@ footer {
     background-attachment: scroll !important;
     background-size: cover !important;
     background-position: center !important;
-    background-image: url("img/hero-bild.jpeg") !important;
+    background-image: url("..img/hero-bild.jpeg") !important;
   }
   #particles-js {
     opacity: 0.3; /* Reduzierte Opazität, um das Hintergrundbild sichtbar zu machen */
