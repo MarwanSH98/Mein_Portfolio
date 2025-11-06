@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" class="scroll-smooth">
+<html lang="de" class="scroll-smooth dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,6 +12,14 @@
       name="keywords"
       content="Frontend Developer, Webentwickler, JavaScript, HTML, CSS, Portfolio, Marwan Sabah"
     />
+    <script>
+      const saved = localStorage.getItem("color-theme");
+      // Default = dark, wenn nichts gespeichert ist
+      const theme = saved || "dark";
+      if (theme === "dark") document.documentElement.classList.add("dark");
+      else document.documentElement.classList.remove("dark");
+    </script>
+
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/favicon.png" />
@@ -37,6 +45,7 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
     <script>
       tailwind.config = {
         darkMode: "class",
@@ -318,7 +327,7 @@
         <div class="relative">
           <div class="w-64 h-64 md:w-80 md:h-80 mx-auto relative">
             <img
-              src="img/marwan.jpeg"
+              src="img/marwan-bild.jpeg"
               alt="Marwan Sabah"
               class="w-full h-full object-cover rounded-full border-4 border-primary-500 shadow-xl"
             />
@@ -516,6 +525,38 @@
                 </p>
               </div>
             </div>
+
+<h3 class="text-2xl font-semibold mt-12 mb-6">Berufserfahrung</h3>
+<div class="space-y-6">
+
+  <div class="timeline-item">
+    <h4 class="font-bold text-lg">
+      Werkstudent – IT & Power Platform Developer
+    </h4>
+    <p class="text-gray-500 dark:text-gray-400">DMT GROUP · Essen, Deutschland · Okt. 2025 – Heute</p>
+  </div>
+
+  <div class="timeline-item">
+    <h4 class="font-bold text-lg">Bachelorarbeit – Nutzerauthentifizierung</h4>
+    <p class="text-gray-500 dark:text-gray-400">XignSys · Deutschland · Dez. 2024 – März 2025</p>
+  </div>
+
+  <div class="timeline-item">
+    <h4 class="font-bold text-lg">Softwareprojekt – Spendensammler</h4>
+    <p class="text-gray-500 dark:text-gray-400">Westfälische Hochschule Gelsenkirchen · Apr. 2024 – Jan. 2025</p>
+  </div>
+
+  <div class="timeline-item">
+    <h4 class="font-bold text-lg">Web-Entwickler (Praktikum)</h4>
+    <p class="text-gray-500 dark:text-gray-400">Institut für Internet-Sicherheit (ifis) · Jan. 2024 – Apr. 2024</p>
+  </div>
+
+</div>
+
+
+
+
+            
           </div>
         </div>
       </div>
